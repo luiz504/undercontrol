@@ -1,11 +1,11 @@
-import React from "react";
-import { StyleSheet } from "react-native";
+import React from 'react'
+import { StyleSheet } from 'react-native'
 
-import { ExternalLink } from "./ExternalLink";
-import { MonoText } from "./MonoText";
-import { Text, View } from "./Themed";
+import { ExternalLink } from './ExternalLink'
+import { MonoText } from './MonoText'
+import { Text, View } from './Themed'
 
-import Colors from "~/constants/Colors";
+import Colors from '~/constants/Colors'
 
 export default function EditScreenInfo({ path }: { path: string }) {
   return (
@@ -43,18 +43,18 @@ export default function EditScreenInfo({ path }: { path: string }) {
           href="https://docs.expo.io/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet"
         >
           <Text style={styles.helpLinkText} lightColor={Colors.light.tint}>
-            Tap here if your app doesn't automatically update after making
+            Tap here if your app doesn&apos;t automatically update after making
             changes
           </Text>
         </ExternalLink>
       </View>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   getStartedContainer: {
-    alignItems: "center",
+    alignItems: 'center',
     marginHorizontal: 50,
   },
   homeScreenFilename: {
@@ -67,17 +67,17 @@ const styles = StyleSheet.create({
   getStartedText: {
     fontSize: 17,
     lineHeight: 24,
-    textAlign: "center",
+    textAlign: 'center',
   },
   helpContainer: {
     marginTop: 15,
     marginHorizontal: 20,
-    alignItems: "center",
+    alignItems: 'center',
   },
   helpLink: {
     paddingVertical: 15,
   },
   helpLinkText: {
-    textAlign: "center",
+    textAlign: 'center',
   },
-});
+})
