@@ -3,11 +3,12 @@
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
-    "test": "jest --watchAll"
+    "dev": "expo start --port 5000",
+    "android": "expo start --android --port 5000",
+    "ios": "expo start --ios --port 5000",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "lint-ts": "tsc --noEmit"
   },
   "jest": {
     "preset": "jest-expo"
