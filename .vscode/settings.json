@@ -8,5 +8,6 @@
         "ngClass",
         "class:list",
         ".*ClassName.*"
-    ]
+    ],
+    "cSpell.words": ["Gluestack"]
 }
