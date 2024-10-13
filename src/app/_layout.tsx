@@ -1,17 +1,14 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome'
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from '@react-navigation/native'
-import { useFonts } from 'expo-font'
-import { Stack } from 'expo-router'
-import * as SplashScreen from 'expo-splash-screen'
 import { useEffect } from 'react'
+import FontAwesome from '@expo/vector-icons/FontAwesome'
+import { useFonts } from 'expo-font'
+import * as SplashScreen from 'expo-splash-screen'
+import { Stack } from 'expo-router'
+
 import 'react-native-reanimated'
 import '../styles/global.css'
 
-import { useColorScheme } from '~/components/useColorScheme'
+import { GluestackUIProvider } from '~/components/ui/gluestack-ui-provider'
+import { VStack } from '~/components/ui'
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -51,14 +48,15 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-  const colorScheme = useColorScheme()
-
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-      </Stack>
-    </ThemeProvider>
+    <GluestackUIProvider>
+      <VStack className="flex-1 bg-purple-950">
+        <Stack>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          {/* <Stack.Screen name="modal" options={{ presentation: 'modal' }} /> */}
+        </Stack>
+      </VStack>
+    </GluestackUIProvider>
   )
 }
