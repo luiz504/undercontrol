@@ -5,7 +5,7 @@ import { centerStyle } from './styles'
 
 type Props = ComponentProps<typeof View> & { className?: string }
 
-const Center = forwardRef<ElementRef<typeof View>, Props>(
+export const Center = forwardRef<ElementRef<typeof View>, Props>(
   ({ className, ...rest }, ref) => {
     return (
       <View className={centerStyle({ class: className })} {...rest} ref={ref} />
@@ -14,5 +14,3 @@ const Center = forwardRef<ElementRef<typeof View>, Props>(
 )
 
 Center.displayName = 'Center'
-
-export { Center }

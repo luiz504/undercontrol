@@ -6,18 +6,12 @@ import { hstackStyle } from './styles'
 
 type Props = ComponentProps<typeof View> & VariantProps<typeof hstackStyle>
 
-const HStack = forwardRef<ElementRef<typeof View>, Props>(
-  ({ className, space, reversed, ...props }, ref) => {
+export const HStack = forwardRef<ElementRef<typeof View>, Props>(
+  ({ className, ...rest }, ref) => {
     return (
-      <View
-        className={hstackStyle({ space, reversed, class: className })}
-        {...props}
-        ref={ref}
-      />
+      <View className={hstackStyle({ class: className })} {...rest} ref={ref} />
     )
   },
 )
 
 HStack.displayName = 'HStack'
-
-export { HStack }

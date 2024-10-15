@@ -12,12 +12,12 @@ cssInterop(UIDivider, { className: 'style' })
 type Props = ComponentProps<typeof UIDivider> &
   VariantProps<typeof dividerStyle>
 
-const Divider = forwardRef<ElementRef<typeof UIDivider>, Props>(
-  ({ className, orientation = 'horizontal', ...props }, ref) => {
+export const Divider = forwardRef<ElementRef<typeof UIDivider>, Props>(
+  ({ className, orientation = 'horizontal', ...rest }, ref) => {
     return (
       <UIDivider
         ref={ref}
-        {...props}
+        {...rest}
         className={dividerStyle({
           orientation,
           class: className,
@@ -28,5 +28,3 @@ const Divider = forwardRef<ElementRef<typeof UIDivider>, Props>(
 )
 
 Divider.displayName = 'Divider'
-
-export { Divider }

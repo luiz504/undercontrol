@@ -6,18 +6,12 @@ import { vstackStyle } from './styles'
 
 type Props = ComponentProps<typeof View> & VariantProps<typeof vstackStyle>
 
-const VStack = forwardRef<ElementRef<typeof View>, Props>(
-  ({ className, space, reversed, ...props }, ref) => {
+export const VStack = forwardRef<ElementRef<typeof View>, Props>(
+  ({ className, ...rest }, ref) => {
     return (
-      <View
-        className={vstackStyle({ space, reversed, class: className })}
-        {...props}
-        ref={ref}
-      />
+      <View className={vstackStyle({ class: className })} {...rest} ref={ref} />
     )
   },
 )
 
 VStack.displayName = 'VStack'
-
-export { VStack }
