@@ -1,7 +1,7 @@
 import React from 'react'
 import { Tabs } from 'expo-router'
 
-import { FontAwesome, FontAwesome6 } from '~/components/ui'
+import { Entypo, FontAwesome6, FontAwesome } from '~/components/ui'
 
 export default function TabLayout() {
   return (
@@ -9,7 +9,11 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: '#a855f7',
         tabBarStyle: {
+          borderColor: '#f8fafc',
           backgroundColor: '#09090b',
+        },
+        tabBarLabelStyle: {
+          display: 'none',
         },
         headerShown: false,
       }}
@@ -17,16 +21,22 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
           tabBarIcon: ({ color }) => (
-            <FontAwesome size={28} name="home" color={color} />
+            <Entypo size={28} name="line-graph" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="cards"
+        options={{
+          tabBarIcon: ({ color }) => (
+            <FontAwesome size={28} name="credit-card-alt" color={color} />
           ),
         }}
       />
       <Tabs.Screen
         name="reserves"
         options={{
-          title: 'Reserves',
           tabBarIcon: ({ color }) => (
             <FontAwesome6 size={28} name="piggy-bank" color={color} />
           ),
