@@ -1,4 +1,7 @@
-import { Divider, Heading, SafeAreaView, VStack } from '~/components/ui'
+import { SafeAreaView } from '~/components/ui/safe-area-view'
+import { VStack } from '~/components/ui/vstack'
+import { Heading } from '~/components/ui/heading'
+import { Divider } from '~/components/ui/divider'
 
 export default function SummaryScreen() {
   return (

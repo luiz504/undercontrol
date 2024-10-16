@@ -1,9 +1,11 @@
 import { router } from 'expo-router'
 import { ScrollView, TouchableOpacity } from 'react-native'
 
-import { Box, SafeAreaView, Text } from '~/components/ui'
+import { SafeAreaView } from '~/components/ui/safe-area-view'
 import { Heading } from '~/components/ui/heading'
+import { Box } from '~/components/ui/box'
 import { LucideIcon } from '~/components/ui/lucide-icon'
+import { Text } from '~/components/ui/text'
 
 export default function InitialScreen() {
   const handleClientEnter = () => {

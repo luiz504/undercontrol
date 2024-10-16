@@ -1,5 +1,9 @@
 import { FC } from 'react'
-import { Heading, Text, VStack } from '~/components/ui'
+
+import { VStack } from '~/components/ui/vstack'
+import { Heading } from '~/components/ui/heading'
+
+import { Text } from '~/components/ui/text'
 import { Card } from '~/domain/entities/Card'
 type Props = {
   item: Card

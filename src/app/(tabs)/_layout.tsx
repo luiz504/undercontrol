@@ -1,7 +1,6 @@
-import React from 'react'
 import { Tabs } from 'expo-router'
 
-import { Entypo, FontAwesome6, FontAwesome } from '~/components/ui'
+import { Entypo, FontAwesome6, FontAwesome } from '~/components/ui/vector-icons'
 
 export default function TabLayout() {
   return (

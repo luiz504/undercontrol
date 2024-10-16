@@ -1,11 +1,9 @@
 import { Link, Stack } from 'expo-router'
 
-import {
-  GluestackUIProvider,
-  Heading,
-  SafeAreaView,
-  Text,
-} from '~/components/ui'
+import { GluestackUIProvider } from '~/components/ui/gluestack-ui-provider'
+import { SafeAreaView } from '~/components/ui/safe-area-view'
+import { Heading } from '~/components/ui/heading'
+import { Text } from '~/components/ui/text'
 
 export default function NotFoundScreen() {
   return (

@@ -1,13 +1,12 @@
 import { FlatList, TouchableOpacity } from 'react-native'
-import {
-  Box,
-  Divider,
-  Heading,
-  LucideIcon,
-  SafeAreaView,
-  Text,
-  VStack,
-} from '~/components/ui'
+
+import { SafeAreaView } from '~/components/ui/safe-area-view'
+import { VStack } from '~/components/ui/vstack'
+import { Heading } from '~/components/ui/heading'
+import { Divider } from '~/components/ui/divider'
+import { Box } from '~/components/ui/box'
+import { LucideIcon } from '~/components/ui/lucide-icon'
+import { Text } from '~/components/ui/text'
 
 import { ReserveItem } from './_components/reserves/reserve-item'
 import { mockReserves } from './_components/reserves/mock-reserves'

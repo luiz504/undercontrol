@@ -1,5 +1,9 @@
 import { FC } from 'react'
-import { Box, Heading, Text, VStack } from '~/components/ui'
+
+import { VStack } from '~/components/ui/vstack'
+import { Heading } from '~/components/ui/heading'
+import { Box } from '~/components/ui/box'
+import { Text } from '~/components/ui/text'
 
 import { Reserve } from '~/domain/entities/Reserve'
 import { reserveStyle } from './styles'
@@ -14,7 +18,7 @@ export const ReserveItem: FC<Props> = ({ item }) => {
   }).format(item.balance)
   const isInDeficit = item.balance < 0
   return (
-    <VStack className={reserveStyle.wrapper({ isInDeficit })}>
+    <VStack className={reserveStyle.wrapper({})}>
       <Heading>{item.label}</Heading>
       <Text className="text-sm font-medium text-zinc-300">{item.bank}</Text>
       <Box className="mt-2 items-end">

@@ -1,7 +1,9 @@
 import { StatusBar } from 'expo-status-bar'
 import { Platform } from 'react-native'
 
-import { Divider, Heading, VStack } from '~/components/ui'
+import { VStack } from '~/components/ui/vstack'
+import { Heading } from '~/components/ui/heading'
+import { Divider } from '~/components/ui/divider'
 
 export default function ModalScreen() {
   return (

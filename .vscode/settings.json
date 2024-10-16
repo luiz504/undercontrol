@@ -9,5 +9,5 @@
         "class:list",
         ".*ClassName.*"
     ],
-    "cSpell.words": ["Entypo", "Gluestack", "nativewind", "Pressable"]
+    "cSpell.words": ["Entypo", "Gluestack", "nativewind", "Pressable", "vstack"]
 }

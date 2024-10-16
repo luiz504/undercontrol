@@ -8,7 +8,7 @@ import 'react-native-reanimated'
 import '../styles/global.css'
 
 import { GluestackUIProvider } from '~/components/ui/gluestack-ui-provider'
-import { VStack } from '~/components/ui'
+import { VStack } from '~/components/ui/vstack'
 
 export {
   // Catch any errors thrown by the Layout component.

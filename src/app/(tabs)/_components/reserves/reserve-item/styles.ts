@@ -1,13 +1,7 @@
 import { tva } from '@gluestack-ui/nativewind-utils/tva'
 
 const wrapper = tva({
-  base: 'rounded-md border-2 p-4 shadow-sm',
-  variants: {
-    isInDeficit: {
-      true: 'border-red-400',
-      false: 'border-green-400',
-    },
-  },
+  base: 'rounded-md border-2 border-slate-100 p-4 shadow-sm',
 })
 
 const balance = tva({
