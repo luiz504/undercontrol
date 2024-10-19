@@ -4,7 +4,13 @@ import { Heading } from '~/components/ui/heading'
 import { Divider } from '~/components/ui/divider'
 import { Input } from '~/components/ui/input'
 
+import { Pressable } from 'react-native'
+import { Text } from '~/components/ui/text'
+import { useState } from 'react'
+
 export default function CreateCardScreen() {
+  const [isOpen, setIsOpen] = useState(false)
+
   return (
     <SafeAreaView className="flex-1 bg-zinc-950 px-8">
       <VStack>
@@ -24,6 +30,13 @@ export default function CreateCardScreen() {
           <Input.Label>Label</Input.Label>
           <Input.PWInput error="lorem" />
         </Input.Wrapper>
+
+        <Pressable
+          className="h-11 justify-center rounded-md border border-neutral-500 px-4"
+          onPress={() => setIsOpen(!isOpen)}
+        >
+          <Text>{isOpen ? 'Close' : 'Open'}</Text>
+        </Pressable>
       </VStack>
     </SafeAreaView>
   )

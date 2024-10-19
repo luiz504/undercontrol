@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { FC, useEffect } from 'react'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { useFonts } from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
@@ -9,6 +9,7 @@ import '../styles/global.css'
 
 import { GluestackUIProvider } from '~/components/ui/gluestack-ui-provider'
 import { VStack } from '~/components/ui/vstack'
+import { ActivityIndicator } from 'react-native'
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -40,23 +41,22 @@ export default function RootLayout() {
     }
   }, [loaded])
 
-  if (!loaded) {
-    return null
-  }
-
-  return <RootLayoutNav />
-}
-
-function RootLayoutNav() {
   return (
     <GluestackUIProvider>
       <VStack className="flex-1 bg-purple-950">
-        <Stack>
-          <Stack.Screen name="index" options={{ headerShown: false }} />
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          {/* <Stack.Screen name="modal" options={{ presentation: 'modal' }} /> */}
-        </Stack>
+        {!loaded && <ActivityIndicator />}
+        {loaded && <RootLayoutNav />}
       </VStack>
     </GluestackUIProvider>
+  )
+}
+
+const RootLayoutNav: FC = () => {
+  return (
+    <Stack>
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      {/* <Stack.Screen name="modal" options={{ presentation: 'modal' }} /> */}
+    </Stack>
   )
 }
