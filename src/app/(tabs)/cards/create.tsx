@@ -1,12 +1,13 @@
+import { useState } from 'react'
+import { Pressable } from 'react-native'
+
 import { SafeAreaView } from '~/components/ui/safe-area-view'
 import { VStack } from '~/components/ui/vstack'
 import { Heading } from '~/components/ui/heading'
 import { Divider } from '~/components/ui/divider'
 import { Input } from '~/components/ui/input'
-
-import { Pressable } from 'react-native'
 import { Text } from '~/components/ui/text'
-import { useState } from 'react'
+import { Form } from '~/components/ui/form'
 
 export default function CreateCardScreen() {
   const [isOpen, setIsOpen] = useState(false)
@@ -16,20 +17,20 @@ export default function CreateCardScreen() {
       <VStack>
         <Heading>Create Card</Heading>
         <Divider className="my-2" />
-        <Input.Wrapper className="mb-4">
-          <Input.Label>Label</Input.Label>
+        <Form.Section className="mb-4">
+          <Form.Label>Label</Form.Label>
           <Input.TextInput placeholder="Placeholder" />
-        </Input.Wrapper>
+        </Form.Section>
 
-        <Input.Wrapper>
-          <Input.Label>Label</Input.Label>
+        <Form.Section>
+          <Form.Label>Label</Form.Label>
           <Input.TextInput error="lorem" />
-        </Input.Wrapper>
+        </Form.Section>
 
-        <Input.Wrapper>
-          <Input.Label>Label</Input.Label>
+        <Form.Section>
+          <Form.Label>Label</Form.Label>
           <Input.PWInput error="lorem" />
-        </Input.Wrapper>
+        </Form.Section>
 
         <Pressable
           className="h-11 justify-center rounded-md border border-neutral-500 px-4"

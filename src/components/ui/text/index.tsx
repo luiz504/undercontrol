@@ -10,5 +10,4 @@ export const Text = forwardRef<ElementRef<typeof RNText>, Props>(
     return <RNText className={textStyle({ className })} {...rest} ref={ref} />
   },
 )
-
 Text.displayName = 'Text'

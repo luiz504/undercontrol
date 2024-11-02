@@ -1,46 +1,12 @@
-import {
-  ComponentProps,
-  ElementRef,
-  FC,
-  forwardRef,
-  ReactNode,
-  useState,
-} from 'react'
-
+import { ComponentProps, ElementRef, forwardRef, useState } from 'react'
 import { Pressable, TextInput as RNTextInput } from 'react-native'
-import { inputStyle } from './styles'
-import { VStack } from '../vstack'
-import { Text } from '../text'
-import { HStack } from '../hstack'
-import { LucideIcon } from '../lucide-icon'
-type WrapperProps = Omit<ComponentProps<typeof VStack>, 'children'> & {
-  children: ReactNode
-}
-const Wrapper: FC<WrapperProps> = ({ children, className, ...rest }) => {
-  return (
-    <VStack className={inputStyle.wrapper({ className })} {...rest}>
-      {children}
-    </VStack>
-  )
-}
 
-type TextProps = Omit<ComponentProps<typeof Text>, 'children'> & {
-  children: ReactNode
-}
-const Label: FC<TextProps> = ({ children, className, ...rest }) => {
-  return (
-    <Text className={inputStyle.label({ className })} {...rest}>
-      {children}
-    </Text>
-  )
-}
-const Error: FC<TextProps> = ({ children, className, ...rest }) => {
-  return (
-    <Text className={inputStyle.error({ className })} {...rest}>
-      {children}
-    </Text>
-  )
-}
+import { LucideIcon } from '../lucide-icon'
+import { VStack } from '../vstack'
+import { HStack } from '../hstack'
+import { Form } from '../form'
+
+import { inputStyle } from './styles'
 
 type InputProps = ComponentProps<typeof RNTextInput> & {
   error?: string
@@ -65,7 +31,7 @@ const TextInput = forwardRef<ElementRef<typeof RNTextInput>, InputProps>(
           {...rest}
           ref={ref}
         />
-        {error && <Error>{error}</Error>}
+        {error && <Form.Error>{error}</Form.Error>}
       </VStack>
     )
   },
@@ -80,7 +46,7 @@ const PWInput = forwardRef<
   const [isFocused, setIsFocused] = useState(false)
   return (
     <VStack className={inputStyle.inputContainer({})}>
-      <HStack className="relative w-full bg-gray-600">
+      <HStack className="relative w-full">
         <RNTextInput
           className={inputStyle.input({
             isFocused,
@@ -114,10 +80,10 @@ const PWInput = forwardRef<
           )}
         </Pressable>
       </HStack>
-      {error && <Error>{error}</Error>}
+      {error && <Form.Error>{error}</Form.Error>}
     </VStack>
   )
 })
 PWInput.displayName = 'PWInput'
 
-export const Input = { Wrapper, Label, TextInput, PWInput }
+export const Input = { TextInput, PWInput }

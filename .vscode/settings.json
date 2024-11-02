@@ -1,6 +1,6 @@
 {
     "tailwindCSS.experimental.classRegex": [
-        ["tva\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+        ["tva\\(([^)]*)\\)", "{?\\s?[\\w].*:\\s*?[\"'`]([^\"'`]*).*?,?\\s?}?"]
     ],
     "tailwindCSS.classAttributes": [
         "class",
