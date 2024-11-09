@@ -10,6 +10,9 @@ import '../styles/global.css'
 import { GluestackUIProvider } from '~/components/ui/gluestack-ui-provider'
 import { VStack } from '~/components/ui/vstack'
 import { ActivityIndicator } from 'react-native'
+import { SQLiteProvider } from 'expo-sqlite'
+
+import { DATABASE_NAME, useDrizzle } from '~/infra/database/drizzle/use-drizzle'
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -25,6 +28,7 @@ export const unstable_settings = {
 SplashScreen.preventAutoHideAsync()
 
 export default function RootLayout() {
+  const drizzle = useDrizzle()
   const [loaded, error] = useFonts({
     SpaceMono: require('assets/fonts/SpaceMono-Regular.ttf'),
     ...FontAwesome.font,
@@ -32,14 +36,14 @@ export default function RootLayout() {
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
-    if (error) throw error
-  }, [error])
+    if (error || drizzle.error) throw error || drizzle.error
+  }, [error, drizzle])
 
   useEffect(() => {
-    if (loaded) {
+    if (loaded && drizzle.success) {
       SplashScreen.hideAsync()
     }
-  }, [loaded])
+  }, [loaded, drizzle.success])
 
   return (
     <GluestackUIProvider>
@@ -53,11 +57,13 @@ export default function RootLayout() {
 
 const RootLayoutNav: FC = () => {
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+    <SQLiteProvider databaseName={DATABASE_NAME}>
+      <Stack>
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 
-      {/* <Stack.Screen name="modal" options={{ presentation: 'modal' }} /> */}
-    </Stack>
+        {/* <Stack.Screen name="modal" options={{ presentation: 'modal' }} /> */}
+      </Stack>
+    </SQLiteProvider>
   )
 }
