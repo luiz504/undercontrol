@@ -1,0 +1,168 @@
+{
+    "version": "6",
+    "dialect": "sqlite",
+    "id": "f768b9b7-359f-4dc0-b49f-fa7578e8c488",
+    "prevId": "00000000-0000-0000-0000-000000000000",
+    "tables": {
+        "cards": {
+            "name": "cards",
+            "columns": {
+                "id": {
+                    "name": "id",
+                    "type": "text(36)",
+                    "primaryKey": true,
+                    "notNull": true,
+                    "autoincrement": false
+                },
+                "label": {
+                    "name": "label",
+                    "type": "text",
+                    "primaryKey": false,
+                    "notNull": true,
+                    "autoincrement": false
+                },
+                "bank": {
+                    "name": "bank",
+                    "type": "text",
+                    "primaryKey": false,
+                    "notNull": false,
+                    "autoincrement": false
+                },
+                "due_day": {
+                    "name": "due_day",
+                    "type": "text(2)",
+                    "primaryKey": false,
+                    "notNull": true,
+                    "autoincrement": false
+                },
+                "currency": {
+                    "name": "currency",
+                    "type": "text(3)",
+                    "primaryKey": false,
+                    "notNull": true,
+                    "autoincrement": false
+                },
+                "create_at": {
+                    "name": "create_at",
+                    "type": "text",
+                    "primaryKey": false,
+                    "notNull": true,
+                    "autoincrement": false,
+                    "default": "CURRENT_TIMESTAMP"
+                },
+                "update_at": {
+                    "name": "update_at",
+                    "type": "text",
+                    "primaryKey": false,
+                    "notNull": false,
+                    "autoincrement": false
+                },
+                "reserve_id": {
+                    "name": "reserve_id",
+                    "type": "text",
+                    "primaryKey": false,
+                    "notNull": false,
+                    "autoincrement": false
+                }
+            },
+            "indexes": {
+                "cards_id_unique": {
+                    "name": "cards_id_unique",
+                    "columns": ["id"],
+                    "isUnique": true
+                }
+            },
+            "foreignKeys": {
+                "cards_reserve_id_reserves_id_fk": {
+                    "name": "cards_reserve_id_reserves_id_fk",
+                    "tableFrom": "cards",
+                    "tableTo": "reserves",
+                    "columnsFrom": ["reserve_id"],
+                    "columnsTo": ["id"],
+                    "onDelete": "no action",
+                    "onUpdate": "no action"
+                }
+            },
+            "compositePrimaryKeys": {},
+            "uniqueConstraints": {},
+            "checkConstraints": {}
+        },
+        "reserves": {
+            "name": "reserves",
+            "columns": {
+                "id": {
+                    "name": "id",
+                    "type": "text(36)",
+                    "primaryKey": true,
+                    "notNull": true,
+                    "autoincrement": false
+                },
+                "label": {
+                    "name": "label",
+                    "type": "text",
+                    "primaryKey": false,
+                    "notNull": true,
+                    "autoincrement": false
+                },
+                "bank": {
+                    "name": "bank",
+                    "type": "text",
+                    "primaryKey": false,
+                    "notNull": false,
+                    "autoincrement": false
+                },
+                "balance": {
+                    "name": "balance",
+                    "type": "integer",
+                    "primaryKey": false,
+                    "notNull": true,
+                    "autoincrement": false,
+                    "default": 0
+                },
+                "currency": {
+                    "name": "currency",
+                    "type": "text(3)",
+                    "primaryKey": false,
+                    "notNull": true,
+                    "autoincrement": false
+                },
+                "create_at": {
+                    "name": "create_at",
+                    "type": "text",
+                    "primaryKey": false,
+                    "notNull": true,
+                    "autoincrement": false,
+                    "default": "CURRENT_TIMESTAMP"
+                },
+                "update_at": {
+                    "name": "update_at",
+                    "type": "text",
+                    "primaryKey": false,
+                    "notNull": false,
+                    "autoincrement": false
+                }
+            },
+            "indexes": {
+                "reserves_id_unique": {
+                    "name": "reserves_id_unique",
+                    "columns": ["id"],
+                    "isUnique": true
+                }
+            },
+            "foreignKeys": {},
+            "compositePrimaryKeys": {},
+            "uniqueConstraints": {},
+            "checkConstraints": {}
+        }
+    },
+    "views": {},
+    "enums": {},
+    "_meta": {
+        "schemas": {},
+        "tables": {},
+        "columns": {}
+    },
+    "internal": {
+        "indexes": {}
+    }
+}

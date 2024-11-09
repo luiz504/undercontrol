@@ -1,21 +1,27 @@
 // https://docs.expo.dev/guides/using-eslint/
 {
-  "extends": ["@rocketseat/eslint-config/react", "plugin:prettier/recommended"],
-  "overrides": [
-    {
-      // Test files only
-      "files": [
-        "**/__tests__/**/*.[jt]s?(x)",
-        "**/?(*.)+(spec|test).[jt]s?(x)"
-      ],
-      "extends": ["plugin:testing-library/react"],
-      "rules": {
-        "@typescript-eslint/no-explicit-any": "off"
-      }
+    "extends": [
+        "@rocketseat/eslint-config/react",
+        "plugin:prettier/recommended",
+        "plugin:drizzle/recommended",
+        "plugin:@tanstack/query/recommended"
+    ],
+    "overrides": [
+        {
+            // Test files only
+            "files": [
+                "**/__tests__/**/*.[jt]s?(x)",
+                "**/?(*.)+(spec|test).[jt]s?(x)"
+            ],
+            "extends": ["plugin:testing-library/react"],
+            "rules": {
+                "@typescript-eslint/no-explicit-any": "off"
+            }
+        }
+    ],
+    "rules": {
+        "no-console": "warn",
+        "camelcase": "off",
+        "no-useless-constructor": "off"
     }
-  ],
-  "rules": {
-    "no-console": "warn",
-    "camelcase": "off"
-  }
 }
