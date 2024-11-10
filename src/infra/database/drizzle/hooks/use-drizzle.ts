@@ -1,9 +1,10 @@
-import { useDrizzleStudio } from 'expo-drizzle-studio-plugin'
-import { drizzle } from 'drizzle-orm/expo-sqlite'
-import { useMigrations } from 'drizzle-orm/expo-sqlite/migrator'
-import { deleteDatabaseAsync, openDatabaseSync } from 'expo-sqlite'
-import migrations from '~/drizzle/migrations/migrations'
 import { useEffect } from 'react'
+import { deleteDatabaseAsync, openDatabaseSync } from 'expo-sqlite'
+import { drizzle } from 'drizzle-orm/expo-sqlite'
+import { useDrizzleStudio } from 'expo-drizzle-studio-plugin'
+import { useMigrations } from 'drizzle-orm/expo-sqlite/migrator'
+
+import migrations from '~/drizzle/migrations/migrations'
 
 export const DATABASE_NAME = 'undercontrol.db' as const
 
@@ -25,7 +26,7 @@ export const useDrizzle = () => {
   const migration = useMigrations(db, migrations)
 
   useEffect(() => {
-    console.log('migration 💋💋', migration.error?.cause) //eslint-disable-line
+    console.log('migration 💋💋', migration) //eslint-disable-line
   }, [migration])
 
   //   useEffect(() => {
