@@ -1,14 +1,14 @@
 import { Card } from '~/domain/entities/Card'
-
-export const mockCards: Card[] = [
-  { id: '1', label: 'Card 1', bank: 'Bank 1' },
-  { id: '2', label: 'Card 2', bank: 'Bank 2' },
-  { id: '3', label: 'Card 3', bank: 'Bank 3' },
-  { id: '4', label: 'Card 4', bank: 'Bank 4' },
-  { id: '5', label: 'Card 5', bank: 'Bank 5' },
-  { id: '6', label: 'Card 6', bank: 'Bank 6' },
-  { id: '7', label: 'Card 7', bank: 'Bank 7' },
-  { id: '8', label: 'Card 8', bank: 'Bank 8' },
-  { id: '9', label: 'Card 9', bank: 'Bank 9' },
-  { id: '10', label: 'Card 10', bank: 'Bank 10' },
+type Ca = Pick<Card, 'label' | 'institution' | 'dueDay' | 'id'>
+export const mockCards: Ca[] = [
+  { id: '1', dueDay: '23', label: 'Card 1', institution: 'institution 1' },
+  { id: '2', dueDay: '01', label: 'Card 2', institution: 'institution 2' },
+  { id: '3', dueDay: '23', label: 'Card 3', institution: 'institution 3' },
+  { id: '4', dueDay: '20', label: 'Card 4', institution: 'institution 4' },
+  { id: '5', dueDay: '30', label: 'Card 5' },
+  { id: '6', dueDay: '15', label: 'Card 6' },
+  { id: '7', dueDay: '20', label: 'Card 7', institution: 'institution 7' },
+  { id: '8', dueDay: '20', label: 'Card 8', institution: 'institution 8' },
+  { id: '9', dueDay: '20', label: 'Card 9', institution: 'institution 9' },
+  { id: '10', dueDay: '20', label: 'Card 10', institution: 'institution 10' },
 ]

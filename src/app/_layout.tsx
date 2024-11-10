@@ -1,18 +1,21 @@
 import { FC, useEffect } from 'react'
-import FontAwesome from '@expo/vector-icons/FontAwesome'
+import { ActivityIndicator } from 'react-native'
 import { useFonts } from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
 import { Stack } from 'expo-router'
+import FontAwesome from '@expo/vector-icons/FontAwesome'
+import { SQLiteProvider } from 'expo-sqlite'
 
 import 'react-native-reanimated'
 import '../styles/global.css'
 
-import { GluestackUIProvider } from '~/components/ui/gluestack-ui-provider'
-import { VStack } from '~/components/ui/vstack'
-import { ActivityIndicator } from 'react-native'
-import { SQLiteProvider } from 'expo-sqlite'
+import { GluestackUIProvider, VStack } from '~/components/ui'
 
-import { DATABASE_NAME, useDrizzle } from '~/infra/database/drizzle/use-drizzle'
+import {
+  DATABASE_NAME,
+  useDrizzle,
+} from '~/infra/database/drizzle/hooks/use-drizzle'
+import { QueryProvider } from '~/infra/cache/query-provider'
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -47,10 +50,12 @@ export default function RootLayout() {
 
   return (
     <GluestackUIProvider>
-      <VStack className="flex-1 bg-purple-950">
-        {!loaded && <ActivityIndicator />}
-        {loaded && <RootLayoutNav />}
-      </VStack>
+      <QueryProvider>
+        <VStack className="flex-1 bg-purple-950">
+          {!loaded && <ActivityIndicator />}
+          {loaded && <RootLayoutNav />}
+        </VStack>
+      </QueryProvider>
     </GluestackUIProvider>
   )
 }

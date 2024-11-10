@@ -10,14 +10,15 @@
         ".*ClassName.*"
     ],
     "cSpell.words": [
-        "Entypo",
-        "Gluestack",
-        "nativewind",
-        "Pressable",
-        "vstack",
-        "legendapp",
         "Actionsheet",
         "commitlint",
-        "rocketseat"
+        "Entypo",
+        "Gluestack",
+        "hstack",
+        "legendapp",
+        "nativewind",
+        "Pressable",
+        "rocketseat",
+        "vstack"
     ]
 }

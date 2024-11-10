@@ -1,16 +1,13 @@
-import { router } from 'expo-router'
 import { ScrollView, TouchableOpacity } from 'react-native'
+import { router } from 'expo-router'
 
-import { SafeAreaView } from '~/components/ui/safe-area-view'
-import { Heading } from '~/components/ui/heading'
-import { Box } from '~/components/ui/box'
-import { LucideIcon } from '~/components/ui/lucide-icon'
-import { Text } from '~/components/ui/text'
+import { SafeAreaView, Heading, Box, LucideIcon, Text } from '~/components/ui'
 
 export default function InitialScreen() {
   const handleClientEnter = () => {
     router.replace('/(tabs)')
   }
+
   return (
     <SafeAreaView className="flex-1 bg-zinc-950">
       <ScrollView contentContainerClassName="flex-grow px-8" className="flex-1">

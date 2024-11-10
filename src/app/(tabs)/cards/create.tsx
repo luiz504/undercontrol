@@ -1,13 +1,15 @@
 import { useState } from 'react'
 import { Pressable } from 'react-native'
 
-import { SafeAreaView } from '~/components/ui/safe-area-view'
-import { VStack } from '~/components/ui/vstack'
-import { Heading } from '~/components/ui/heading'
-import { Divider } from '~/components/ui/divider'
-import { Input } from '~/components/ui/input'
-import { Text } from '~/components/ui/text'
-import { Form } from '~/components/ui/form'
+import {
+  SafeAreaView,
+  VStack,
+  Heading,
+  Divider,
+  Input,
+  Text,
+  Form,
+} from '~/components/ui'
 
 export default function CreateCardScreen() {
   const [isOpen, setIsOpen] = useState(false)
