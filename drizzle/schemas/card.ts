@@ -6,7 +6,8 @@ export const card = sqliteTable('cards', {
   id: text('id', { length: 36 }).primaryKey().unique(),
   label: text('label').notNull(),
   institution: text('bank'),
-  dueDay: text('due_day', { length: 2 }).notNull(),
+  closingDate: text('closing_date', { length: 2 }).notNull(),
+  dueDate: text('due_date', { length: 2 }).notNull(),
   currency: text('currency', {
     length: 3,
   }).notNull(),

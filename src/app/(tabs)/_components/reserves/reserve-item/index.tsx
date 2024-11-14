@@ -8,7 +8,9 @@ import { Text } from '~/components/ui/text'
 import { Reserve } from '~/domain/entities/Reserve'
 import { reserveStyle } from './styles'
 type Props = {
-  item: Reserve
+  item: Pick<Reserve, 'label' | 'institution' | 'currency'> & {
+    balance: number
+  }
 }
 
 export const ReserveItem: FC<Props> = ({ item }) => {
@@ -20,7 +22,9 @@ export const ReserveItem: FC<Props> = ({ item }) => {
   return (
     <VStack className={reserveStyle.wrapper({})}>
       <Heading>{item.label}</Heading>
-      <Text className="text-sm font-medium text-zinc-300">{item.bank}</Text>
+      <Text className="text-sm font-medium text-zinc-300">
+        {item.institution || 'N/I'}
+      </Text>
       <Box className="mt-2 items-end">
         <Text className={reserveStyle.balance({ isInDeficit })}>{balance}</Text>
       </Box>

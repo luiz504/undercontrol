@@ -4,7 +4,7 @@ import { LucideIcon, VStack, Heading, HStack, Text } from '~/components/ui'
 import { Card } from '~/domain/entities/Card'
 
 type Props = {
-  item: Pick<Card, 'label' | 'institution' | 'dueDay'>
+  item: Pick<Card, 'label' | 'institution' | 'closingDate' | 'dueDate'>
 }
 export const CardItem: FC<Props> = ({ item }) => {
   return (
@@ -14,8 +14,14 @@ export const CardItem: FC<Props> = ({ item }) => {
         <Heading>{item.label}</Heading>
       </HStack>
       <HStack className="items-center gap-2">
-        <Text className="text-sm font-medium text-purple-500">Due day:</Text>
-        <Text>{item.dueDay}</Text>
+        <Text className="text-sm font-medium text-purple-500">
+          Closing date:
+        </Text>
+        <Text>{item.closingDate}</Text>
+      </HStack>
+      <HStack className="items-center gap-2">
+        <Text className="text-sm font-medium text-purple-500">Due date:</Text>
+        <Text>{item.dueDate}</Text>
       </HStack>
       <HStack className="items-center gap-2">
         <Text className="text-sm font-medium text-purple-500">

@@ -23,7 +23,9 @@ export default function ReservesScreen() {
         contentContainerClassName="flex-grow gap-3 py-2"
         data={mockReserves}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <ReserveItem item={item} />}
+        renderItem={({ item }) => (
+          <ReserveItem item={{ ...item, balance: 0 }} />
+        )}
       />
 
       <Box className="mt-auto py-8">
