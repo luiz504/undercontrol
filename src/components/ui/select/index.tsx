@@ -5,7 +5,7 @@ import {
   useImperativeHandle,
   useState,
 } from 'react'
-import { Pressable, TouchableOpacity } from 'react-native'
+import { Pressable, ScrollView, TouchableOpacity } from 'react-native'
 import { Text } from '../text'
 
 import { cn } from '@gluestack-ui/nativewind-utils/cn'
@@ -15,10 +15,9 @@ import { Actionsheet } from '../actionsheet'
 import { selectStyle } from './styles'
 import { VStack } from '../vstack'
 import { Form } from '../form'
-type Option = {
+export type Option = {
   label: string
   value: string
-  defaultValue?: boolean
 }
 type Props = ComponentPropsWithRef<typeof TouchableOpacity> & {
   value?: Option
@@ -85,14 +84,16 @@ export const Select = forwardRef<ElementRef<typeof TouchableOpacity>, Props>(
               <Actionsheet.DragIndicator />
             </Actionsheet.DragIndicatorWrapper>
 
-            {options.map((option) => (
-              <Actionsheet.Item
-                key={option.value}
-                onPress={() => handlePressItem(option)}
-              >
-                <Text>{option.label}</Text>
-              </Actionsheet.Item>
-            ))}
+            <ScrollView className="max-h-[40vh] w-full">
+              {options.map((option) => (
+                <Actionsheet.Item
+                  key={option.value}
+                  onPress={() => handlePressItem(option)}
+                >
+                  <Text>{option.label}</Text>
+                </Actionsheet.Item>
+              ))}
+            </ScrollView>
           </Actionsheet.Content>
         </Actionsheet.Root>
       </>
