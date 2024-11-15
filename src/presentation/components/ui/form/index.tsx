@@ -2,6 +2,7 @@ import { ComponentProps, FC, ReactNode } from 'react'
 import { VStack } from '../vstack'
 import { formStyle } from './styles'
 import { Text } from '../text'
+import { LucideIcon } from '../lucide-icon'
 
 const Root = VStack
 type SectionProps = Omit<ComponentProps<typeof VStack>, 'children'> & {
@@ -28,6 +29,11 @@ const Label: FC<TextProps> = ({ children, className, ...rest }) => {
 const Error: FC<TextProps> = ({ children, className, ...rest }) => {
   return (
     <Text className={formStyle.error({ className })} {...rest}>
+      <LucideIcon
+        name="CircleAlert"
+        size={14}
+        className="mr-1 translate-y-[2px] text-center text-red"
+      />{' '}
       {children}
     </Text>
   )

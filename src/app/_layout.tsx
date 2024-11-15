@@ -1,21 +1,28 @@
 import { FC, useEffect } from 'react'
-import { ActivityIndicator } from 'react-native'
+import {
+  SafeAreaProvider,
+  initialWindowMetrics,
+} from 'react-native-safe-area-context'
 import { useFonts } from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
 import { Stack } from 'expo-router'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { SQLiteProvider } from 'expo-sqlite'
 
+import '~/infra/internationalization'
 import 'react-native-reanimated'
 import '../styles/global.css'
 
-import { GluestackUIProvider, VStack } from '~/components/ui'
+import { GluestackUIProvider, VStack } from '~/presentation/components/ui'
 
 import {
   DATABASE_NAME,
   useDrizzle,
 } from '~/infra/database/drizzle/hooks/use-drizzle'
 import { QueryProvider } from '~/infra/cache/query-provider'
+import { StatusBar } from 'expo-status-bar'
+import { colors } from '~/styles/theme/colors'
+import { LoadingCenter } from '~/presentation/components/templates/loading-center'
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -49,14 +56,17 @@ export default function RootLayout() {
   }, [loaded, drizzle.success])
 
   return (
-    <GluestackUIProvider>
-      <QueryProvider>
-        <VStack className="flex-1 bg-purple-950">
-          {!loaded && <ActivityIndicator />}
-          {loaded && <RootLayoutNav />}
-        </VStack>
-      </QueryProvider>
-    </GluestackUIProvider>
+    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+      <GluestackUIProvider>
+        <QueryProvider>
+          <StatusBar style="light" backgroundColor="transparent" />
+          <VStack className="bg-background flex-1">
+            {!loaded && <LoadingCenter />}
+            {loaded && <RootLayoutNav />}
+          </VStack>
+        </QueryProvider>
+      </GluestackUIProvider>
+    </SafeAreaProvider>
   )
 }
 
@@ -65,9 +75,7 @@ const RootLayoutNav: FC = () => {
     <SQLiteProvider databaseName={DATABASE_NAME}>
       <Stack
         screenOptions={{
-          statusBarStyle: 'light',
-          statusBarTranslucent: true,
-          statusBarBackgroundColor: 'transparent',
+          contentStyle: { backgroundColor: colors.black.DEFAULT },
         }}
       >
         <Stack.Screen name="index" options={{ headerShown: false }} />

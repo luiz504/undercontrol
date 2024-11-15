@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Language, LANGUAGES } from '~/infra/internationalization/constants'
 import { LanguageAdapter } from '~/infra/internationalization/language-adapter'
 
-import { Option } from '~/components/ui'
+import { Option } from '~/presentation/components/ui'
 
 export const useTranslationsHelpers = () => {
   const { t, i18n } = useTranslation()

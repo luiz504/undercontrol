@@ -1,4 +1,4 @@
-import { Option } from '~/components/ui'
+import { Option } from '~/presentation/components/ui'
 import { Currency } from '~/domain/entities/shared-properties'
 
 const currenciesWithLabel: Record<

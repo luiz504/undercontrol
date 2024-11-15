@@ -7,5 +7,18 @@
   "Reserve": "Reserve",
   "Settings": "Settings",
   "Spanish": "Spanish",
-  "Summary": "Summary"
+  "Summary": "Summary",
+  "Credit_card": "Credit Card",
+  "Credit_card_plural": "Credit Cards",
+  "CARD_LIST": {
+    "EMPTY": "You haven’t added any credit cards yet.",
+    "CREATE_CARD_INSTRUCTION": "Tap the button below to add your first card."
+  },
+  "Label": "Label",
+  "Institution": "Institution",
+  "Closing_date": "Closing date",
+  "Due_date": "Due date",
+  "Currency": "Currency",
+  "Create": "Create",
+  "Select...": "Select..."
 }

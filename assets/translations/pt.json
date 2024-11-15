@@ -1,4 +1,10 @@
 {
+  "CARD_LIST": {
+    "CREATE_CARD_INSTRUCTION": "Toque no botão abaixo para adicionar seu primeiro cartão.",
+    "EMPTY": "Você ainda não adicionou nenhum cartão de crédito."
+  },
+  "Credit_card": "Cartão de Crédito",
+  "Credit_card_plural": "Cartões de Crédito",
   "English": "Inglês",
   "Enter": "Entrar",
   "Language": "Idioma",
@@ -7,5 +13,12 @@
   "Reserve": "Reserva",
   "Settings": "Configurações",
   "Spanish": "Espanhol",
-  "Summary": "Resumo"
+  "Summary": "Resumo",
+  "Label": "Etiqueta",
+  "Institution": "Instituição",
+  "Closing_date": "Data de Fechamento",
+  "Due_date": "Data de Vencimento",
+  "Currency": "Moeda",
+  "Create": "Criar",
+  "Select...": "Selecione..."
 }

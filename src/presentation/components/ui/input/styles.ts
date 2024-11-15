@@ -4,14 +4,14 @@ const inputContainer = tva({ base: 'flex-grow gap-1' })
 
 const input = tva({
   base: [
-    'h-12 flex-grow rounded-md bg-zinc-900 px-3',
-    'text-base text-zinc-200',
+    'h-12 flex-grow rounded-md bg-transparent px-3',
+    'text-base text-white',
     'border',
   ],
   variants: {
     isFocused: {
-      true: 'border-zinc-400',
-      false: 'border-zinc-700',
+      true: 'border-black-ternary',
+      false: 'border-black-secondary',
     },
     isPassword: {
       true: 'pr-14',

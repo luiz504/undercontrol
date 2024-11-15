@@ -9,7 +9,7 @@ export const Text = forwardRef<ElementRef<typeof RNText>, Props>(
   ({ className, ...rest }, ref) => {
     return (
       <RNText
-        className={cn('font-body text-base text-slate-50', className)}
+        className={cn('font-body text-base text-white', className)}
         {...rest}
         ref={ref}
       />

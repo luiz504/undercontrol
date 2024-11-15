@@ -24,7 +24,7 @@ const button = tva({
     {
       theme: 'primary',
       variant: 'solid',
-      class: 'border-purple-500 bg-purple-500',
+      class: 'border-purple bg-purple',
     },
     {
       theme: 'primary',
@@ -34,12 +34,12 @@ const button = tva({
     {
       theme: 'primary',
       variant: 'outline',
-      class: 'border-purple-500 bg-transparent',
+      class: 'border-purple bg-transparent',
     },
     {
       theme: 'neutral',
       variant: 'solid',
-      class: 'border-zinc-500 bg-zinc-500',
+      class: 'border-white bg-white',
     },
     {
       theme: 'neutral',
@@ -49,7 +49,7 @@ const button = tva({
     {
       theme: 'neutral',
       variant: 'outline',
-      class: 'border-zinc-500 bg-transparent',
+      class: 'border-white bg-transparent',
     },
   ],
 })
@@ -79,27 +79,27 @@ const text = tva({
     {
       variant: 'solid',
       theme: 'neutral',
+      class: 'text-black',
+    },
+    {
+      variant: 'outline',
+      theme: 'primary',
+      class: 'text-purple',
+    },
+    {
+      variant: 'outline',
+      theme: 'neutral',
       class: 'text-white',
     },
     {
-      variant: 'outline',
-      theme: 'primary',
-      class: 'text-purple-500',
-    },
-    {
-      variant: 'outline',
-      theme: 'neutral',
-      class: 'text-zinc-500',
-    },
-    {
       variant: 'link',
       theme: 'primary',
-      class: 'text-purple-500',
+      class: 'text-purple',
     },
     {
       variant: 'link',
       theme: 'neutral',
-      class: 'text-zinc-500',
+      class: 'text-white',
     },
   ],
 })
@@ -134,7 +134,7 @@ const icon = tva({
     {
       variant: 'outline',
       theme: 'primary',
-      class: 'text-purple-500',
+      class: 'text-purple',
     },
     {
       variant: 'outline',
@@ -144,7 +144,7 @@ const icon = tva({
     {
       variant: 'link',
       theme: 'primary',
-      class: 'text-purple-500',
+      class: 'text-purple',
     },
     {
       variant: 'link',

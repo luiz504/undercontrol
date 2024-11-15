@@ -1,20 +1,24 @@
 import { FlatList, TouchableOpacity } from 'react-native'
-
-import { SafeAreaView } from '~/components/ui/safe-area-view'
-import { VStack } from '~/components/ui/vstack'
-import { Heading } from '~/components/ui/heading'
-import { Divider } from '~/components/ui/divider'
-import { Box } from '~/components/ui/box'
-import { LucideIcon } from '~/components/ui/lucide-icon'
-import { Text } from '~/components/ui/text'
+import {
+  Box,
+  Divider,
+  Heading,
+  LucideIcon,
+  SafeAreaView,
+  Text,
+  VStack,
+} from '~/presentation/components/ui'
 import { mockReserves } from './components/mock-reserves'
 import { ReserveItem } from './components/reserve-item'
+import { useTranslation } from 'react-i18next'
 
 export default function ReservesScreen() {
+  const { t } = useTranslation()
+
   return (
     <SafeAreaView className="flex-1 bg-zinc-950 px-8">
       <VStack>
-        <Heading>Reserves</Heading>
+        <Heading>{t('Provisioning_reserves')}</Heading>
         <Divider className="my-2" />
       </VStack>
       <FlatList
@@ -33,7 +37,9 @@ export default function ReservesScreen() {
           className="flex-row items-center justify-center gap-3 rounded-md border border-purple-500 p-4"
         >
           <LucideIcon name="Plus" size={30} className="text-purple-500" />
-          <Text className="text-lg font-semibold text-purple-500">Reserve</Text>
+          <Text className="text-lg font-semibold text-purple-500">
+            {t('Reserve')}
+          </Text>
         </TouchableOpacity>
       </Box>
     </SafeAreaView>

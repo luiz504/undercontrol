@@ -1,9 +1,9 @@
 import { FC } from 'react'
 
-import { VStack } from '~/components/ui/vstack'
-import { Heading } from '~/components/ui/heading'
-import { Box } from '~/components/ui/box'
-import { Text } from '~/components/ui/text'
+import { VStack } from '~/presentation/components/ui/vstack'
+import { Heading } from '~/presentation/components/ui/heading'
+import { Box } from '~/presentation/components/ui/box'
+import { Text } from '~/presentation/components/ui/text'
 
 import { Reserve } from '~/domain/entities/Reserve'
 import { reserveStyle } from './styles'

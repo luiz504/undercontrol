@@ -7,6 +7,7 @@ import { HStack } from '../hstack'
 import { Form } from '../form'
 
 import { inputStyle } from './styles'
+import { colors } from '~/styles/theme/colors'
 
 type InputProps = ComponentProps<typeof RNTextInput> & {
   error?: string
@@ -18,8 +19,8 @@ export const Input = forwardRef<ElementRef<typeof RNTextInput>, InputProps>(
       <VStack className={inputStyle.inputContainer({ className })}>
         <RNTextInput
           className={inputStyle.input({ className, isFocused })}
-          selectionColor={'#a1a1aa'}
-          placeholderTextColor={'#71717a'}
+          selectionColor={colors.white.DEFAULT}
+          placeholderTextColor={colors.glowColor}
           onFocus={(e) => {
             setIsFocused(true)
             onFocus?.(e)
@@ -53,8 +54,8 @@ export const InputPassword = forwardRef<
             className,
             isPassword: true,
           })}
-          selectionColor={'#a1a1aa'}
-          placeholderTextColor={'#71717a'}
+          selectionColor={colors.white.DEFAULT}
+          placeholderTextColor={colors.glowColor}
           onFocus={(e) => {
             setIsFocused(true)
             onFocus?.(e)
@@ -73,10 +74,14 @@ export const InputPassword = forwardRef<
           className={inputStyle.inputPWButton({})}
         >
           {isHidden && (
-            <LucideIcon name="EyeOff" size={24} className="text-zinc-400" />
+            <LucideIcon
+              name="EyeOff"
+              size={24}
+              className="text-black-secondary"
+            />
           )}
           {!isHidden && (
-            <LucideIcon name="Eye" size={24} className="text-zinc-400" />
+            <LucideIcon name="Eye" size={24} className="text-black-secondary" />
           )}
         </Pressable>
       </HStack>

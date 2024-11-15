@@ -1,21 +1,32 @@
 import { Tabs } from 'expo-router'
 
-import { Entypo, FontAwesome6, FontAwesome } from '~/components/ui/vector-icons'
+import {
+  Entypo,
+  FontAwesome6,
+  FontAwesome,
+} from '~/presentation/components/ui/vector-icons'
+import { colors } from '~/styles/theme/colors'
 
 export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: '#a855f7',
+        tabBarActiveTintColor: colors.purple.DEFAULT,
+        tabBarInactiveTintColor: colors.disabled,
         tabBarStyle: {
-          borderColor: '#f8fafc',
-          backgroundColor: '#09090b',
+          borderColor: colors.glowColor,
+          backgroundColor: colors.black.DEFAULT,
+          height: 60,
         },
         tabBarLabelStyle: {
           display: 'none',
         },
+        tabBarItemStyle: {
+          paddingVertical: 10,
+        },
         headerShown: false,
         headerTintColor: 'red',
+        sceneStyle: { backgroundColor: colors.black.DEFAULT },
       }}
     >
       <Tabs.Screen
@@ -39,6 +50,14 @@ export default function TabLayout() {
         options={{
           tabBarIcon: ({ color }) => (
             <FontAwesome6 size={28} name="piggy-bank" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="settings"
+        options={{
+          tabBarIcon: ({ color }) => (
+            <FontAwesome name="cog" size={28} color={color} />
           ),
         }}
       />

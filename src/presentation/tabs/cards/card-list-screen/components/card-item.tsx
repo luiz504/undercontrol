@@ -1,5 +1,11 @@
 import { FC } from 'react'
-import { LucideIcon, VStack, Heading, HStack, Text } from '~/components/ui'
+import {
+  LucideIcon,
+  VStack,
+  Heading,
+  HStack,
+  Text,
+} from '~/presentation/components/ui'
 
 import { Card } from '~/domain/entities/Card'
 

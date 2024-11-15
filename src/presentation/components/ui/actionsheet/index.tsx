@@ -42,7 +42,7 @@ const PrimitiveIcon = forwardRef<ElementRef<typeof Svg>, IPrimitiveIcon>(
       size,
       stroke = 'currentColor',
       as: AsComp,
-      ...props
+      ...rest
     },
     ref,
   ) => {
@@ -66,10 +66,10 @@ const PrimitiveIcon = forwardRef<ElementRef<typeof Svg>, IPrimitiveIcon>(
     }
 
     if (AsComp) {
-      return <AsComp ref={ref} {...props} {...sizeProps} {...colorProps} />
+      return <AsComp ref={ref} {...rest} {...sizeProps} {...colorProps} />
     }
     return (
-      <Svg ref={ref} height={height} width={width} {...colorProps} {...props} />
+      <Svg ref={ref} height={height} width={width} {...colorProps} {...rest} />
     )
   },
 )
@@ -77,8 +77,8 @@ const PrimitiveIcon = forwardRef<ElementRef<typeof Svg>, IPrimitiveIcon>(
 PrimitiveIcon.displayName = 'PrimitiveIcon'
 
 const ItemWrapper = forwardRef<ElementRef<typeof Pressable>, PressableProps>(
-  ({ ...props }, ref) => {
-    return <Pressable {...props} ref={ref} />
+  ({ ...rest }, ref) => {
+    return <Pressable {...rest} ref={ref} />
   },
 )
 ItemWrapper.displayName = 'ItemWrapper'
@@ -114,14 +114,14 @@ type RootProps = VariantProps<typeof actionsheetStyles.root> &
   ComponentPropsWithoutRef<typeof UIActionsheet>
 
 const Root = forwardRef<ElementRef<typeof UIActionsheet>, RootProps>(
-  ({ className, ...props }, ref) => {
+  ({ className, ...rest }, ref) => {
     return (
       <UIActionsheet
         className={actionsheetStyles.root({
           className,
         })}
         ref={ref}
-        {...props}
+        {...rest}
       />
     )
   },
@@ -167,14 +167,14 @@ type ActionsheetContentProps = VariantProps<typeof actionsheetStyles.content> &
 const ActionsheetContent = forwardRef<
   ElementRef<typeof UIActionsheet.Content>,
   ActionsheetContentProps
->(({ className, ...props }, ref) => {
+>(({ className, ...rest }, ref) => {
   return (
     <UIActionsheet.Content
       className={actionsheetStyles.content({
         class: className,
       })}
       ref={ref}
-      {...props}
+      {...rest}
     />
   )
 })
@@ -182,19 +182,22 @@ const ActionsheetContent = forwardRef<
 ActionsheetContent.displayName = 'ActionsheetContent'
 
 type ActionsheetItemProps = VariantProps<typeof actionsheetStyles.item> &
-  ComponentPropsWithoutRef<typeof UIActionsheet.Item>
+  ComponentPropsWithoutRef<typeof UIActionsheet.Item> & {
+    selected?: boolean
+  }
 
 const ActionsheetItem = forwardRef<
   ElementRef<typeof UIActionsheet.Item>,
   ActionsheetItemProps
->(({ className, ...props }, ref) => {
+>(({ className, selected = false, ...rest }, ref) => {
   return (
     <UIActionsheet.Item
       className={actionsheetStyles.item({
+        selected,
         class: className,
       })}
       ref={ref}
-      {...props}
+      {...rest}
     />
   )
 })
@@ -208,14 +211,14 @@ type ActionsheetDragIndicatorProps = VariantProps<
 const ActionsheetDragIndicator = forwardRef<
   ElementRef<typeof UIActionsheet.DragIndicator>,
   ActionsheetDragIndicatorProps
->(({ className, ...props }, ref) => {
+>(({ className, ...rest }, ref) => {
   return (
     <UIActionsheet.DragIndicator
       className={actionsheetStyles.dragIndicator({
         class: className,
       })}
       ref={ref}
-      {...props}
+      {...rest}
     />
   )
 })
@@ -229,14 +232,14 @@ type ActionsheetDragIndicatorWrapperProps = VariantProps<
 const ActionsheetDragIndicatorWrapper = forwardRef<
   ElementRef<typeof UIActionsheet.DragIndicatorWrapper>,
   ActionsheetDragIndicatorWrapperProps
->(({ className, ...props }, ref) => {
+>(({ className, ...rest }, ref) => {
   return (
     <UIActionsheet.DragIndicatorWrapper
       className={actionsheetStyles.dragIndicatorWrapper({
         class: className,
       })}
       ref={ref}
-      {...props}
+      {...rest}
     />
   )
 })

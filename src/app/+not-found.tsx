@@ -5,7 +5,7 @@ import {
   SafeAreaView,
   Heading,
   Text,
-} from '~/components/ui'
+} from '~/presentation/components/ui'
 
 export default function NotFoundScreen() {
   return (
