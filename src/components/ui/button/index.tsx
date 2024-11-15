@@ -1,29 +1,34 @@
-'use client'
 import React, {
   ComponentPropsWithoutRef,
   ElementRef,
   ElementType,
+  FC,
   forwardRef,
   useMemo,
 } from 'react'
 import { createButton } from '@gluestack-ui/button'
 import { Svg } from 'react-native-svg'
-import type { PressableProps } from 'react-native'
-
+import {
+  TouchableOpacity,
+  ActivityIndicator,
+  Text,
+  View,
+  TouchableOpacityProps,
+} from 'react-native'
 import { useStyleContext } from '@gluestack-ui/nativewind-utils/withStyleContext'
 import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates'
 import { cssInterop } from 'nativewind'
 import { withStates } from '@gluestack-ui/nativewind-utils/withStates'
-import { ActivityIndicator, Pressable, Text, View } from 'react-native'
 import type { VariantProps } from '@gluestack-ui/nativewind-utils'
-import { ButtonStyles } from './styles'
+import { buttonStyles } from './styles'
 
 const SCOPE = 'BUTTON'
-const ButtonWrapper = forwardRef<ElementRef<typeof Pressable>, PressableProps>(
-  ({ ...rest }, ref) => {
-    return <Pressable {...rest} ref={ref} />
-  },
-)
+const ButtonWrapper = forwardRef<
+  ElementRef<typeof TouchableOpacity>,
+  TouchableOpacityProps
+>(({ ...rest }, ref) => {
+  return <TouchableOpacity {...rest} ref={ref} />
+})
 
 ButtonWrapper.displayName = 'ButtonWrapper'
 
@@ -115,137 +120,114 @@ cssInterop(PrimitiveIcon, {
   },
 })
 
+type ButtonIconProps = ComponentPropsWithoutRef<typeof UIButton.Icon> &
+  VariantProps<typeof buttonStyles.icon> & {
+    className?: string | undefined
+    as?: ElementType
+  }
+
+const ButtonIcon: FC<ButtonIconProps> = ({ className, ...rest }, ref) => {
+  const {
+    variant: parentVariant,
+    size: parentSize,
+    theme: parentTheme,
+  } = useStyleContext(SCOPE)
+
+  return (
+    <UIButton.Icon
+      {...rest}
+      className={buttonStyles.icon({
+        parentVariants: {
+          size: parentSize,
+          variant: parentVariant,
+          theme: parentTheme,
+        },
+        class: className,
+      })}
+      ref={ref}
+    />
+  )
+}
+
+type ButtonTextProps = ComponentPropsWithoutRef<typeof UIButton.Text> &
+  VariantProps<typeof buttonStyles.text> & { className?: string }
+
+const ButtonText: FC<ButtonTextProps> = ({ className, ...rest }) => {
+  const {
+    variant: parentVariant,
+    size: parentSize,
+    theme: parentTheme,
+  } = useStyleContext(SCOPE)
+
+  return (
+    <UIButton.Text
+      {...rest}
+      className={buttonStyles.text({
+        parentVariants: {
+          size: parentSize,
+          variant: parentVariant,
+          theme: parentTheme,
+        },
+        class: className,
+      })}
+    />
+  )
+}
+
+const ButtonSpinner = UIButton.Spinner
+
 type ButtonProps = Omit<ComponentPropsWithoutRef<typeof UIButton>, 'context'> &
-  VariantProps<typeof ButtonStyles.button> & { className?: string }
+  VariantProps<typeof buttonStyles.button> & {
+    icon?: ElementType
+    label?: string
+    isLoading?: boolean
+  }
 
 const Button = forwardRef<ElementRef<typeof UIButton>, ButtonProps>(
   (
-    { className, variant = 'solid', size = 'md', action = 'primary', ...rest },
+    {
+      icon,
+      label,
+      isLoading,
+      className,
+      variant = 'solid',
+      size = 'md',
+      theme = 'primary',
+      activeOpacity = 0.8,
+      ...rest
+    },
     ref,
   ) => {
     return (
       <UIButton
         ref={ref}
         {...rest}
-        className={ButtonStyles.button({
+        className={buttonStyles.button({
           variant,
           size,
-          action,
+          theme,
           class: className,
         })}
-        context={{ variant, size, action }}
-      />
+        context={{ variant, size, theme }}
+        activeOpacity={activeOpacity}
+      >
+        {isLoading && (
+          <ButtonSpinner
+            className={buttonStyles.icon({
+              parentVariants: {
+                size,
+                variant,
+                theme,
+              },
+            })}
+          />
+        )}
+        {icon && !isLoading && <ButtonIcon as={icon} />}
+        {label && !isLoading && <ButtonText>{label}</ButtonText>}
+      </UIButton>
     )
   },
 )
-
-type ButtonTextProps = ComponentPropsWithoutRef<typeof UIButton.Text> &
-  VariantProps<typeof ButtonStyles.text> & { className?: string }
-
-const ButtonText = forwardRef<
-  ElementRef<typeof UIButton.Text>,
-  ButtonTextProps
->(({ className, variant, size, action, ...rest }, ref) => {
-  const {
-    variant: parentVariant,
-    size: parentSize,
-    action: parentAction,
-  } = useStyleContext(SCOPE)
-
-  return (
-    <UIButton.Text
-      ref={ref}
-      {...rest}
-      className={ButtonStyles.text({
-        parentVariants: {
-          variant: parentVariant,
-          size: parentSize,
-          action: parentAction,
-        },
-        variant,
-        size,
-        action,
-        class: className,
-      })}
-    />
-  )
-})
-
-const ButtonSpinner = UIButton.Spinner
-
-type ButtonIcon = ComponentPropsWithoutRef<typeof UIButton.Icon> &
-  VariantProps<typeof ButtonStyles.icon> & {
-    className?: string | undefined
-    as?: ElementType
-  }
-
-const ButtonIcon = forwardRef<ElementRef<typeof UIButton.Icon>, ButtonIcon>(
-  ({ className, size, ...rest }, ref) => {
-    const {
-      variant: parentVariant,
-      size: parentSize,
-      action: parentAction,
-    } = useStyleContext(SCOPE)
-
-    if (typeof size === 'number') {
-      return (
-        <UIButton.Icon
-          ref={ref}
-          {...rest}
-          className={ButtonStyles.icon({ class: className })}
-          size={size}
-        />
-      )
-    } else if (
-      (rest.height !== undefined || rest.width !== undefined) &&
-      size === undefined
-    ) {
-      return (
-        <UIButton.Icon
-          ref={ref}
-          {...rest}
-          className={ButtonStyles.icon({ class: className })}
-        />
-      )
-    }
-    return (
-      <UIButton.Icon
-        {...rest}
-        className={ButtonStyles.icon({
-          parentVariants: {
-            size: parentSize,
-            variant: parentVariant,
-            action: parentAction,
-          },
-          size,
-          class: className,
-        })}
-        ref={ref}
-      />
-    )
-  },
-)
-
-type IButtonGroupProps = ComponentPropsWithoutRef<typeof UIButton.Group> &
-  VariantProps<typeof ButtonStyles.group>
-
-const ButtonGroup = forwardRef<
-  ElementRef<typeof UIButton.Group>,
-  IButtonGroupProps
->(({ className, space = 'md', ...rest }, ref) => {
-  return (
-    <UIButton.Group
-      className={ButtonStyles.group({ class: className, space })}
-      {...rest}
-      ref={ref}
-    />
-  )
-})
-
 Button.displayName = 'Button'
-ButtonText.displayName = 'ButtonText'
-ButtonSpinner.displayName = 'ButtonSpinner'
-ButtonIcon.displayName = 'ButtonIcon'
-ButtonGroup.displayName = 'ButtonGroup'
 
-export { Button, ButtonText, ButtonSpinner, ButtonIcon, ButtonGroup }
+export { Button }

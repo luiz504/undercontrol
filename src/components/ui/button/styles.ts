@@ -1,9 +1,13 @@
 import { tva } from '@gluestack-ui/nativewind-utils/tva'
 
 const button = tva({
-  base: 'group/button flex-row items-center justify-center gap-2 rounded data-[disabled=true]:opacity-40',
+  base: [
+    'flex-row items-center justify-center',
+    'group/button gap-2 rounded-md border',
+    'data-[disabled=true]:opacity-40',
+  ],
   variants: {
-    action: {
+    theme: {
       primary: '',
       neutral: '',
     },
@@ -13,40 +17,39 @@ const button = tva({
       solid: '',
     },
     size: {
-      'md-square': 'aspect-square h-12',
       md: 'h-12 px-3',
     },
   },
   compoundVariants: [
     {
-      action: 'primary',
+      theme: 'primary',
       variant: 'solid',
-      class: 'bg-purple-500',
+      class: 'border-purple-500 bg-purple-500',
     },
     {
-      action: 'primary',
+      theme: 'primary',
       variant: 'link',
-      class: 'bg-transparent',
+      class: 'border-transparent bg-transparent',
     },
     {
-      action: 'primary',
+      theme: 'primary',
       variant: 'outline',
-      class: 'bg-transparent',
+      class: 'border-purple-500 bg-transparent',
     },
     {
-      action: 'neutral',
+      theme: 'neutral',
       variant: 'solid',
-      class: 'bg-zinc-500',
+      class: 'border-zinc-500 bg-zinc-500',
     },
     {
-      action: 'neutral',
+      theme: 'neutral',
       variant: 'link',
-      class: 'bg-transparent',
+      class: 'border-transparent bg-transparent',
     },
     {
-      action: 'neutral',
+      theme: 'neutral',
       variant: 'outline',
-      class: 'bg-transparent',
+      class: 'border-zinc-500 bg-transparent',
     },
   ],
 })
@@ -54,8 +57,8 @@ const button = tva({
 const text = tva({
   base: 'font-semibold',
   parentVariants: {
-    action: {
-      primary: 'text-red-500',
+    theme: {
+      primary: '',
       neutral: '',
     },
     variant: {
@@ -70,22 +73,32 @@ const text = tva({
   parentCompoundVariants: [
     {
       variant: 'solid',
-      action: 'primary',
+      theme: 'primary',
       class: 'text-white',
     },
     {
       variant: 'solid',
-      action: 'neutral',
+      theme: 'neutral',
       class: 'text-white',
     },
     {
       variant: 'outline',
-      action: 'primary',
+      theme: 'primary',
       class: 'text-purple-500',
     },
     {
       variant: 'outline',
-      action: 'neutral',
+      theme: 'neutral',
+      class: 'text-zinc-500',
+    },
+    {
+      variant: 'link',
+      theme: 'primary',
+      class: 'text-purple-500',
+    },
+    {
+      variant: 'link',
+      theme: 'neutral',
       class: 'text-zinc-500',
     },
   ],
@@ -100,13 +113,9 @@ const icon = tva({
       solid: '',
     },
     size: {
-      xs: 'size-3.5',
-      sm: 'size-4',
-      md: 'size-[18]',
-      lg: 'size-6',
-      xl: 'size-8',
+      md: 'size-6',
     },
-    action: {
+    theme: {
       primary: '',
       neutral: '',
     },
@@ -114,41 +123,39 @@ const icon = tva({
   parentCompoundVariants: [
     {
       variant: 'solid',
-      action: 'primary',
+      theme: 'primary',
       class: 'text-white',
     },
     {
       variant: 'solid',
-      action: 'neutral',
+      theme: 'neutral',
       class: 'text-white',
     },
     {
       variant: 'outline',
-      action: 'primary',
+      theme: 'primary',
       class: 'text-purple-500',
     },
     {
       variant: 'outline',
-      action: 'neutral',
+      theme: 'neutral',
+      class: 'text-zinc-500',
+    },
+    {
+      variant: 'link',
+      theme: 'primary',
+      class: 'text-purple-500',
+    },
+    {
+      variant: 'link',
+      theme: 'neutral',
       class: 'text-zinc-500',
     },
   ],
 })
 
-const group = tva({
-  base: '',
-  variants: {
-    space: {
-      xs: 'gap-1',
-      sm: 'gap-2',
-      md: 'gap-3',
-    },
-  },
-})
-
-export const ButtonStyles = {
+export const buttonStyles = {
   button,
   text,
   icon,
-  group,
 }

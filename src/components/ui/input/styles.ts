@@ -1,5 +1,7 @@
 import { tva } from '@gluestack-ui/nativewind-utils/tva'
 
+const inputContainer = tva({ base: 'flex-grow gap-1' })
+
 const input = tva({
   base: [
     'h-12 flex-grow rounded-md bg-zinc-900 px-3',
@@ -16,7 +18,7 @@ const input = tva({
     },
   },
 })
-const inputContainer = tva({ base: 'w-full gap-1' })
+
 const inputPWButton = tva({
   base: 'absolute right-0.5 top-0.5 rounded-md p-2',
 })

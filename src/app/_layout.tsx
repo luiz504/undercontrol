@@ -63,7 +63,13 @@ export default function RootLayout() {
 const RootLayoutNav: FC = () => {
   return (
     <SQLiteProvider databaseName={DATABASE_NAME}>
-      <Stack>
+      <Stack
+        screenOptions={{
+          statusBarStyle: 'light',
+          statusBarTranslucent: true,
+          statusBarBackgroundColor: 'transparent',
+        }}
+      >
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 

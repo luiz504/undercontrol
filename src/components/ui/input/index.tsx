@@ -11,7 +11,7 @@ import { inputStyle } from './styles'
 type InputProps = ComponentProps<typeof RNTextInput> & {
   error?: string
 }
-const TextInput = forwardRef<ElementRef<typeof RNTextInput>, InputProps>(
+export const Input = forwardRef<ElementRef<typeof RNTextInput>, InputProps>(
   ({ className, error, onFocus, onBlur, ...rest }, ref) => {
     const [isFocused, setIsFocused] = useState(false)
     return (
@@ -36,9 +36,9 @@ const TextInput = forwardRef<ElementRef<typeof RNTextInput>, InputProps>(
     )
   },
 )
-TextInput.displayName = 'TextInput'
+Input.displayName = 'Input'
 
-const PWInput = forwardRef<
+export const InputPassword = forwardRef<
   ElementRef<typeof RNTextInput>,
   Omit<InputProps, 'keyboardType'>
 >(({ error, onFocus, onBlur, className, ...rest }, ref) => {
@@ -46,7 +46,7 @@ const PWInput = forwardRef<
   const [isFocused, setIsFocused] = useState(false)
   return (
     <VStack className={inputStyle.inputContainer({})}>
-      <HStack className="relative w-full">
+      <HStack className="relative flex-grow">
         <RNTextInput
           className={inputStyle.input({
             isFocused,
@@ -84,6 +84,4 @@ const PWInput = forwardRef<
     </VStack>
   )
 })
-PWInput.displayName = 'PWInput'
-
-export const Input = { TextInput, PWInput }
+InputPassword.displayName = 'InputPassword'

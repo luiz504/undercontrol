@@ -1,7 +1,7 @@
 import { tva } from '@gluestack-ui/nativewind-utils/tva'
 
 const root = tva({
-  base: 'h-12 w-full flex-row items-center justify-between rounded-md border bg-zinc-900 px-3',
+  base: 'h-12 flex-grow flex-row items-center justify-between rounded-md border bg-zinc-900 px-3',
   variants: {
     focused: {
       true: 'border-zinc-400',

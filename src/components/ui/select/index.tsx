@@ -58,10 +58,10 @@ export const Select = forwardRef<ElementRef<typeof TouchableOpacity>, Props>(
 
     return (
       <>
-        <VStack className="gap-1">
+        <VStack className={cn('flex-grow gap-1', className)}>
           <Pressable
             ref={ref}
-            className={selectStyle.root({ className, focused: isOpen })}
+            className={selectStyle.root({ focused: isOpen })}
             {...rest}
             onPress={() => setIsOpen(true)}
           >
