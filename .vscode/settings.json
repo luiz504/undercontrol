@@ -1,24 +1,25 @@
 {
-    "tailwindCSS.experimental.classRegex": [
-        ["([\"'`][^\"'`]*.*?[\"'`])", "[\"'`]([^\"'`]*).*?[\"'`]"]
-    ],
-    "tailwindCSS.classAttributes": [
-        "class",
-        "className",
-        "ngClass",
-        "class:list",
-        ".*ClassName.*"
-    ],
-    "cSpell.words": [
-        "Actionsheet",
-        "commitlint",
-        "Entypo",
-        "Gluestack",
-        "hstack",
-        "legendapp",
-        "nativewind",
-        "Pressable",
-        "rocketseat",
-        "vstack"
-    ]
+  "cSpell.language": "en,pt-br,es",
+  "tailwindCSS.experimental.classRegex": [
+    ["([\"'`][^\"'`]*.*?[\"'`])", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  ],
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "ngClass",
+    "class:list",
+    ".*ClassName.*"
+  ],
+  "cSpell.words": [
+    "Actionsheet",
+    "commitlint",
+    "Entypo",
+    "Gluestack",
+    "hstack",
+    "legendapp",
+    "nativewind",
+    "Pressable",
+    "rocketseat",
+    "vstack"
+  ]
 }
