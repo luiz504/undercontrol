@@ -79,7 +79,7 @@ export const Select = forwardRef<ElementRef<typeof TouchableOpacity>, Props>(
               )}
             />
           </Pressable>
-          {error && <Form.Error>{error}</Form.Error>}
+          {error && <Form.Error error={error} />}
         </VStack>
 
         <Actionsheet.Root isOpen={isOpen} onClose={() => setIsOpen(false)}>

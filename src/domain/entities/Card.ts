@@ -15,16 +15,27 @@ const validateClosingDateAndDueDate = ({
   const _dueDate = Number(dueDate)
   return _closingDate > _dueDate
 }
-const cardSchema = z.object({
+export const cardSchema = z.object({
   id: z.string().uuid(),
-  label: z.string().min(3).max(30),
-  closingDate: z.string().min(2).max(2).refine(validateDateValue, {
-    message: 'Must be a number between 01 and 28',
-  }),
-  dueDate: z.string().min(2).max(2).refine(validateDateValue, {
-    message: 'Must be a number between 01 and 28',
-  }),
-  currency: z.enum(CURRENCIES),
+  label: z
+    .string({ required_error: 'REQUIRED_FIELD_ERROR' })
+    .min(3, { message: 'MIN_LENGTH_3_ERROR' })
+    .max(30, { message: 'MAX_LENGTH_30_ERROR' }),
+  closingDate: z
+    .string({ required_error: 'REQUIRED_FIELD_ERROR' })
+    .min(2, { message: 'INVALID_DATE_ERROR' })
+    .max(2, { message: 'INVALID_DATE_ERROR' })
+    .refine(validateDateValue, {
+      message: 'DATE_RANGE_INVALID_ERROR',
+    }),
+  dueDate: z
+    .string({ required_error: 'REQUIRED_FIELD_ERROR' })
+    .min(2, { message: 'INVALID_DATE_ERROR' })
+    .max(2, { message: 'INVALID_DATE_ERROR' })
+    .refine(validateDateValue, {
+      message: 'DATE_RANGE_INVALID_ERROR',
+    }),
+  currency: z.enum(CURRENCIES, { required_error: 'REQUIRED_FIELD_ERROR' }),
   createdAt: z.date(),
   updatedAt: z.date().nullable(),
 })

@@ -192,6 +192,8 @@ const Button = forwardRef<ElementRef<typeof UIButton>, ButtonProps>(
       icon,
       label,
       isLoading,
+      disabled,
+      isDisabled,
       className,
       variant = 'solid',
       size = 'md',
@@ -211,6 +213,7 @@ const Button = forwardRef<ElementRef<typeof UIButton>, ButtonProps>(
           theme,
           class: className,
         })}
+        disabled={disabled || isDisabled || isLoading}
         context={{ variant, size, theme }}
         activeOpacity={activeOpacity}
       >

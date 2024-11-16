@@ -32,7 +32,7 @@ export const Input = forwardRef<ElementRef<typeof RNTextInput>, InputProps>(
           {...rest}
           ref={ref}
         />
-        {error && <Form.Error>{error}</Form.Error>}
+        {error && <Form.Error error={error} />}
       </VStack>
     )
   },
@@ -85,7 +85,7 @@ export const InputPassword = forwardRef<
           )}
         </Pressable>
       </HStack>
-      {error && <Form.Error>{error}</Form.Error>}
+      {error && <Form.Error error={error} />}
     </VStack>
   )
 })

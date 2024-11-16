@@ -1,24 +1,29 @@
 {
-  "English": "English",
-  "Enter": "Enter",
-  "Language": "Language",
-  "Portuguese": "Portuguese",
-  "Provisioning_reserves": "Provisioning Reserves",
-  "Reserve": "Reserve",
-  "Settings": "Settings",
-  "Spanish": "Spanish",
-  "Summary": "Summary",
+  "CARD_LIST": {
+    "CREATE_CARD_INSTRUCTION": "Tap the button below to add your first card.",
+    "EMPTY": "You haven’t added any credit cards yet."
+  },
+  "Closing_date": "Closing date",
+  "Create": "Create",
   "Credit_card": "Credit Card",
   "Credit_card_plural": "Credit Cards",
-  "CARD_LIST": {
-    "EMPTY": "You haven’t added any credit cards yet.",
-    "CREATE_CARD_INSTRUCTION": "Tap the button below to add your first card."
-  },
-  "Label": "Label",
-  "Institution": "Institution",
-  "Closing_date": "Closing date",
-  "Due_date": "Due date",
   "Currency": "Currency",
-  "Create": "Create",
-  "Select...": "Select..."
+  "DATE_RANGE_INVALID_ERROR": "Date range must be between 01 and 28",
+  "Due_date": "Due date",
+  "English": "English",
+  "Enter": "Enter",
+  "INVALID_DATE_ERROR": "Expected format: DD",
+  "Institution": "Institution",
+  "Label": "Label",
+  "Language": "Language",
+  "MAX_LENGTH_30_ERROR": "Maximum length is 30",
+  "MIN_LENGTH_3_ERROR": "Minimum length is 3",
+  "Portuguese": "Portuguese",
+  "Provisioning_reserves": "Provisioning Reserves",
+  "REQUIRED_FIELD_ERROR": "This field is required",
+  "Reserve": "Reserve",
+  "Select...": "Select...",
+  "Settings": "Settings",
+  "Spanish": "Spanish",
+  "Summary": "Summary"
 }
