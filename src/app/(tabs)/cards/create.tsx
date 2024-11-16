@@ -1,3 +1,3 @@
-import { CardCreateScreen } from '~/presentation/tabs/cards/card-create-screen'
+import { CardCreateScreen } from '~/presentation/screens/tabs/cards/card-create-screen'
 
 export default CardCreateScreen

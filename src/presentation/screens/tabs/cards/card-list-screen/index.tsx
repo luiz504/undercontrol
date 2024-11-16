@@ -33,7 +33,7 @@ export const CardListScreen: FC = () => {
         icon={
           <FontAwesome name="credit-card-alt" size={25} className="text-pink" />
         }
-        title={t('Credit_card', { count: 0 })}
+        title={t('Credit_card', { count: 3 })}
       />
 
       <FlatList

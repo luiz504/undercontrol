@@ -4,7 +4,7 @@ import { useTranslationsHelpers } from '~/hooks/translations/useTranslationHelpe
 import { Language } from '~/infra/internationalization/constants'
 
 import { FontAwesome, Form, Select, VStack } from '~/presentation/components/ui'
-import { HeaderIconTitle } from '../components/templates/header-icon-title'
+import { HeaderIconTitle } from '../../components/templates/header-icon-title'
 
 export function SettingsScreen() {
   const { t, i18n } = useTranslation()

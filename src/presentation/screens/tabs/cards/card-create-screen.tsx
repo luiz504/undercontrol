@@ -3,7 +3,7 @@ import { router } from 'expo-router'
 import { useTranslation } from 'react-i18next'
 import { KeyboardAvoidingView, ScrollView } from 'react-native'
 import { Controller, useForm } from 'react-hook-form'
-import { z } from 'zod'
+import { z, ZodError } from 'zod'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { HeaderIconTitle } from '~/presentation/components/templates/header-icon-title'
@@ -20,6 +20,9 @@ import { dueDayOptions } from '~/presentation/constants/due-day-options'
 import { cardSchema } from '~/domain/entities/Card'
 import { useCardsRepository } from '~/hooks/repositories/use-cards-repository'
 
+import { useToast } from '~/presentation/components/ui/toast'
+import { useQueryClient } from '@tanstack/react-query'
+
 const formSchema = cardSchema.pick({
   label: true,
   closingDate: true,
@@ -30,6 +33,8 @@ const formSchema = cardSchema.pick({
 type FormData = z.infer<typeof formSchema>
 export const CardCreateScreen: FC = () => {
   const cardRepository = useCardsRepository()
+  const queryClient = useQueryClient()
+  const toast = useToast()
   const { t } = useTranslation()
   const {
     control,
@@ -41,10 +46,22 @@ export const CardCreateScreen: FC = () => {
   })
   const onSubmitSuccess = async (data: FormData) => {
     try {
-      const response = await cardRepository.insert(data)
-      console.log(response) //eslint-disable-line
+      await cardRepository.insert(data)
+      toast.show({
+        title: t('CARD_CREATE.SUCCESS'),
+      })
+      queryClient.refetchQueries({ queryKey: ['cards-list'] })
+      router.back()
     } catch (err) {
-      console.log(err)//eslint-disable-line
+      let msg = 'CARD_CREATE.UNKNOWN_ERROR'
+      if (err instanceof ZodError) {
+        msg = err.issues[0].message
+      }
+      toast.show({
+        type: 'error',
+        title: t('CARD_CREATE.ERROR'),
+        description: t(msg),
+      })
     }
   }
 

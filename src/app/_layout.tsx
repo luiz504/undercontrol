@@ -13,7 +13,7 @@ import '~/infra/internationalization'
 import 'react-native-reanimated'
 import '../styles/global.css'
 
-import { GluestackUIProvider, SafeAreaView } from '~/presentation/components/ui'
+import { GluestackUIProvider } from '~/presentation/components/ui'
 
 import {
   DATABASE_NAME,
@@ -23,7 +23,6 @@ import { QueryProvider } from '~/infra/cache/query-provider'
 import { StatusBar } from 'expo-status-bar'
 import { colors } from '~/styles/theme/colors'
 import { LoadingCenter } from '~/presentation/components/templates/loading-center'
-import { View } from 'react-native'
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -61,16 +60,12 @@ export default function RootLayout() {
       <StatusBar style="light" translucent backgroundColor="transparent" />
 
       <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-        <GluestackUIProvider>
-          <QueryProvider>
-            <View className="flex-1 bg-black">
-              <SafeAreaView className="flex-1">
-                {!loaded && <LoadingCenter />}
-                {loaded && <RootLayoutNav />}
-              </SafeAreaView>
-            </View>
-          </QueryProvider>
-        </GluestackUIProvider>
+        <QueryProvider>
+          <GluestackUIProvider>
+            {!loaded && <LoadingCenter />}
+            {loaded && <RootLayoutNav />}
+          </GluestackUIProvider>
+        </QueryProvider>
       </SafeAreaProvider>
     </>
   )
@@ -86,7 +81,6 @@ const RootLayoutNav: FC = () => {
       >
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-
         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
       </Stack>
     </SQLiteProvider>

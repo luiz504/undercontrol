@@ -1,3 +1,3 @@
-import { SummaryScreen } from '~/presentation/tabs/summary-screen'
+import { SummaryScreen } from '~/presentation/screens/tabs/summary-screen'
 
 export default SummaryScreen

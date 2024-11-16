@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 
 import { Entypo, VStack } from '~/presentation/components/ui'
-import { HeaderIconTitle } from '../components/templates/header-icon-title'
+import { HeaderIconTitle } from '../../components/templates/header-icon-title'
 
 export function SummaryScreen() {
   const { t } = useTranslation()

@@ -1,3 +1,3 @@
-import { CardListScreen } from '~/presentation/tabs/cards/card-list-screen'
+import { CardListScreen } from '~/presentation/screens/tabs/cards/card-list-screen'
 
 export default CardListScreen

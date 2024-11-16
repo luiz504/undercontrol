@@ -19,7 +19,7 @@ export const ReserveItem: FC<Props> = ({ item }) => {
       className={cn(
         'rounded-md p-4 shadow-sm',
         'bg-cyan-light',
-        'border-2 border-black-secondary',
+        'border border-black-secondary',
       )}
     >
       <Heading className="text-cyan">{item.label}</Heading>

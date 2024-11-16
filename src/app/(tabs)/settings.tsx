@@ -1,3 +1,3 @@
-import { SettingsScreen } from '~/presentation/tabs/settings-screen'
+import { SettingsScreen } from '~/presentation/screens/tabs/settings-screen'
 
 export default SettingsScreen
