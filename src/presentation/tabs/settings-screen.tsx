@@ -1,24 +1,21 @@
 import { useTranslation } from 'react-i18next'
 
-import {
-  Divider,
-  Form,
-  Heading,
-  SafeAreaView,
-  Select,
-} from '~/presentation/components/ui'
 import { useTranslationsHelpers } from '~/hooks/translations/useTranslationHelpers'
 import { Language } from '~/infra/internationalization/constants'
+
+import { FontAwesome, Form, Select, VStack } from '~/presentation/components/ui'
+import { HeaderIconTitle } from '../components/templates/header-icon-title'
 
 export function SettingsScreen() {
   const { t, i18n } = useTranslation()
   const { languageOptions, changeLanguage } = useTranslationsHelpers()
 
   return (
-    <SafeAreaView className="flex-1 px-8">
-      <Heading>{t('Settings')}</Heading>
-
-      <Divider className="my-3 mb-8" />
+    <VStack className="flex-1 px-8">
+      <HeaderIconTitle
+        icon={<FontAwesome name="cog" size={25} className="text-orange" />}
+        title={t('Settings')}
+      />
 
       <Form.Section>
         <Form.Label>{t('Language')}</Form.Label>
@@ -28,6 +25,6 @@ export function SettingsScreen() {
           onValueChange={({ value }) => changeLanguage(value as Language)}
         />
       </Form.Section>
-    </SafeAreaView>
+    </VStack>
   )
 }

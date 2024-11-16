@@ -1,68 +1,57 @@
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ScrollView } from 'react-native'
+import { KeyboardAvoidingView, ScrollView } from 'react-native'
 
+import { HeaderIconTitle } from '~/presentation/components/templates/header-icon-title'
 import {
-  SafeAreaView,
-  VStack,
-  Heading,
-  Divider,
   Input,
   Form,
-  HStack,
   LucideIcon,
   Select,
   Button,
 } from '~/presentation/components/ui'
-
 import { currencyOptions } from '~/presentation/constants/currency-options'
 import { dueDayOptions } from '~/presentation/constants/due-day-options'
 
 export const CardCreateScreen: FC = () => {
   const { t } = useTranslation()
   return (
-    <SafeAreaView className="flex-1 px-8">
-      <ScrollView>
-        <VStack>
-          <HStack className="items-center gap-3">
-            <LucideIcon name="Plus" size={30} className="text-purple" />
+    <KeyboardAvoidingView className="flex-1">
+      <ScrollView contentContainerClassName="flex-grow px-8 pb-8">
+        <HeaderIconTitle
+          icon={<LucideIcon name="Plus" size={30} className="text-pink" />}
+          title={t('Credit_card')}
+        />
 
-            <Heading>{t('Credit_card')}</Heading>
-          </HStack>
+        <Form.Section className="my-4">
+          <Form.Label>{t('Label')}</Form.Label>
+          <Input placeholder="Card xxx" />
+        </Form.Section>
 
-          <Divider className="my-2" />
+        <Form.Section className="mb-4">
+          <Form.Label>{t('Closing_date')}</Form.Label>
+          <Select value={{ value: '01', label: '1' }} options={dueDayOptions} />
+        </Form.Section>
 
-          <Form.Section className="my-4">
-            <Form.Label>{t('Label')}</Form.Label>
-            <Input placeholder="Card xxx" />
-          </Form.Section>
+        <Form.Section className="mb-4">
+          <Form.Label>{t('Due_date')}</Form.Label>
+          <Select options={dueDayOptions} />
+        </Form.Section>
 
-          <Form.Section className="mb-4">
-            <Form.Label>{t('Institution')}</Form.Label>
-            <Input placeholder="Bank xxx" />
-          </Form.Section>
+        <Form.Section className="mb-6">
+          <Form.Label>{t('Currency')}</Form.Label>
+          <Select options={currencyOptions} />
+        </Form.Section>
 
-          <Form.Section className="mb-4">
-            <Form.Label>{t('Closing_date')}</Form.Label>
-            <Select
-              value={{ value: '01', label: '1' }}
-              options={dueDayOptions}
-            />
-          </Form.Section>
+        <Button theme="tertiary" label={t('Create')} />
 
-          <Form.Section className="mb-4">
-            <Form.Label>{t('Due_date')}</Form.Label>
-            <Select options={dueDayOptions} />
-          </Form.Section>
-
-          <Form.Section className="mb-6">
-            <Form.Label>{t('Currency')}</Form.Label>
-            <Select options={currencyOptions} />
-          </Form.Section>
-
-          <Button label={t('Create')} />
-        </VStack>
+        <Button
+          className="mt-auto"
+          variant="outline"
+          theme="neutral"
+          label={t('Cancel')}
+        />
       </ScrollView>
-    </SafeAreaView>
+    </KeyboardAvoidingView>
   )
 }

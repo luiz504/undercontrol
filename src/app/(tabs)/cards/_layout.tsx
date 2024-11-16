@@ -1,4 +1,5 @@
 import { Stack } from 'expo-router'
+
 import { colors } from '~/styles/theme/colors'
 
 export default function CardsLayout() {

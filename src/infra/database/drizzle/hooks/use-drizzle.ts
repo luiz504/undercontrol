@@ -29,12 +29,12 @@ export const useDrizzle = () => {
     console.log('migration 💋💋', migration) //eslint-disable-line
   }, [migration])
 
-  //   useEffect(() => {
-  //     if (migration.error) {
-  //       console.log('migration.error 🤬🤬', migration.error)
-  //       deleteDatabase()
-  //     }
-  //   }, [migration.error])
+  // useEffect(() => {
+  //   if (migration.error) {
+  //     console.log('migration.error 🤬🤬', migration.error)
+  //     deleteDatabase()
+  //   }
+  // }, [migration.error])
 
   return migration
 }

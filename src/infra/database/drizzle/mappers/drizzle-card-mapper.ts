@@ -9,11 +9,9 @@ export class DrizzleCardMapper {
     return CardEntity.create({
       id: raw.id,
       label: raw.label,
-      institution: raw.institution,
       closingDate: raw.closingDate,
       dueDate: raw.dueDate,
       currency: raw.currency as Card['currency'],
-      reserveId: raw.reserveId,
       createdAt: new Date(raw.createdAt),
       updatedAt: raw.updatedAt ? new Date(raw.updatedAt) : null,
     })
@@ -28,8 +26,6 @@ export class DrizzleCardMapper {
       closingDate: props.closingDate,
       dueDate: props.dueDate,
       currency: props.currency,
-      institution: props.institution,
-      reserveId: props.reserveId,
     }
   }
 }

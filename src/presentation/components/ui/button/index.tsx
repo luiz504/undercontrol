@@ -176,7 +176,10 @@ const ButtonText: FC<ButtonTextProps> = ({ className, ...rest }) => {
 
 const ButtonSpinner = UIButton.Spinner
 
-type ButtonProps = Omit<ComponentPropsWithoutRef<typeof UIButton>, 'context'> &
+type ButtonProps = Omit<
+  ComponentPropsWithoutRef<typeof UIButton>,
+  'context' | 'children'
+> &
   VariantProps<typeof buttonStyles.button> & {
     icon?: ElementType
     label?: string

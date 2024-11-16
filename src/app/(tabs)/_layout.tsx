@@ -1,3 +1,4 @@
+import { cn } from '@gluestack-ui/nativewind-utils/cn'
 import { Tabs } from 'expo-router'
 
 import {
@@ -40,24 +41,36 @@ export default function TabLayout() {
       <Tabs.Screen
         name="cards"
         options={{
-          tabBarIcon: ({ color }) => (
-            <FontAwesome size={28} name="credit-card-alt" color={color} />
+          tabBarIcon: ({ focused }) => (
+            <FontAwesome
+              size={28}
+              name="credit-card-alt"
+              className={cn('text-disabled', focused && 'text-pink')}
+            />
           ),
         }}
       />
       <Tabs.Screen
         name="reserves"
         options={{
-          tabBarIcon: ({ color }) => (
-            <FontAwesome6 size={28} name="piggy-bank" color={color} />
+          tabBarIcon: ({ focused }) => (
+            <FontAwesome6
+              size={28}
+              name="piggy-bank"
+              className={cn('text-disabled', focused && 'text-cyan')}
+            />
           ),
         }}
       />
       <Tabs.Screen
         name="settings"
         options={{
-          tabBarIcon: ({ color }) => (
-            <FontAwesome name="cog" size={28} color={color} />
+          tabBarIcon: ({ focused }) => (
+            <FontAwesome
+              name="cog"
+              size={28}
+              className={cn('text-disabled', focused && 'text-orange')}
+            />
           ),
         }}
       />

@@ -18,7 +18,6 @@ const validateClosingDateAndDueDate = ({
 const cardSchema = z.object({
   id: z.string().uuid(),
   label: z.string().min(3).max(30),
-  institution: z.string().max(30).optional().nullable(),
   closingDate: z.string().min(2).max(2).refine(validateDateValue, {
     message: 'Must be a number between 01 and 28',
   }),
@@ -28,7 +27,6 @@ const cardSchema = z.object({
   currency: z.enum(CURRENCIES),
   createdAt: z.date(),
   updatedAt: z.date().nullable(),
-  reserveId: z.string().uuid().optional().nullable(),
 })
 
 export type Card = z.infer<typeof cardSchema>
@@ -49,8 +47,6 @@ const cardUpdateSchema = cardSchema
     closingDate: true,
     dueDate: true,
     currency: true,
-    institution: true,
-    reserveId: true,
   })
   .partial()
   .extend({

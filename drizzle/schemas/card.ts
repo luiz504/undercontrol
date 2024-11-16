@@ -1,11 +1,9 @@
 import { sql } from 'drizzle-orm'
 import { sqliteTable, text } from 'drizzle-orm/sqlite-core'
-import { reserve } from './reserve'
 
 export const card = sqliteTable('cards', {
   id: text('id', { length: 36 }).primaryKey().unique(),
-  label: text('label').notNull(),
-  institution: text('bank'),
+  label: text('label').unique().notNull(),
   closingDate: text('closing_date', { length: 2 }).notNull(),
   dueDate: text('due_date', { length: 2 }).notNull(),
   currency: text('currency', {
@@ -15,7 +13,4 @@ export const card = sqliteTable('cards', {
     .notNull()
     .default(sql`CURRENT_TIMESTAMP`),
   updatedAt: text('update_at'),
-
-  //
-  reserveId: text('reserve_id').references(() => reserve.id),
 })

@@ -10,6 +10,8 @@ const button = tva({
     theme: {
       primary: '',
       neutral: '',
+      secondary: '',
+      tertiary: '',
     },
     variant: {
       link: 'px-0',
@@ -51,6 +53,36 @@ const button = tva({
       variant: 'outline',
       class: 'border-white bg-transparent',
     },
+    {
+      theme: 'secondary',
+      variant: 'solid',
+      class: 'border-cyan bg-cyan',
+    },
+    {
+      theme: 'secondary',
+      variant: 'link',
+      class: 'border-transparent bg-transparent',
+    },
+    {
+      theme: 'secondary',
+      variant: 'outline',
+      class: 'border-cyan bg-transparent',
+    },
+    {
+      theme: 'tertiary',
+      variant: 'solid',
+      class: 'border-pink bg-pink',
+    },
+    {
+      theme: 'tertiary',
+      variant: 'link',
+      class: 'border-transparent bg-transparent',
+    },
+    {
+      theme: 'tertiary',
+      variant: 'outline',
+      class: 'border-pink bg-transparent',
+    },
   ],
 })
 
@@ -60,6 +92,8 @@ const text = tva({
     theme: {
       primary: '',
       neutral: '',
+      secondary: '',
+      tertiary: '',
     },
     variant: {
       link: '',
@@ -82,9 +116,29 @@ const text = tva({
       class: 'text-black',
     },
     {
+      variant: 'solid',
+      theme: 'secondary',
+      class: 'text-white',
+    },
+    {
+      variant: 'solid',
+      theme: 'tertiary',
+      class: 'text-white',
+    },
+    {
       variant: 'outline',
       theme: 'primary',
       class: 'text-purple',
+    },
+    {
+      variant: 'outline',
+      theme: 'secondary',
+      class: 'text-cyan',
+    },
+    {
+      variant: 'outline',
+      theme: 'tertiary',
+      class: 'text-pink',
     },
     {
       variant: 'outline',
@@ -100,6 +154,16 @@ const text = tva({
       variant: 'link',
       theme: 'neutral',
       class: 'text-white',
+    },
+    {
+      variant: 'link',
+      theme: 'secondary',
+      class: 'text-cyan',
+    },
+    {
+      variant: 'link',
+      theme: 'tertiary',
+      class: 'text-pink',
     },
   ],
 })
@@ -116,22 +180,14 @@ const icon = tva({
       md: 'size-6',
     },
     theme: {
-      primary: '',
+      primary: 'text-white',
       neutral: '',
+      secondary: '',
+      tertiary: '',
     },
   },
   parentCompoundVariants: [
     {
-      variant: 'solid',
-      theme: 'primary',
-      class: 'text-white',
-    },
-    {
-      variant: 'solid',
-      theme: 'neutral',
-      class: 'text-white',
-    },
-    {
       variant: 'outline',
       theme: 'primary',
       class: 'text-purple',
@@ -142,6 +198,16 @@ const icon = tva({
       class: 'text-zinc-500',
     },
     {
+      variant: 'outline',
+      theme: 'secondary',
+      class: 'text-cyan',
+    },
+    {
+      variant: 'outline',
+      theme: 'tertiary',
+      class: 'text-pink',
+    },
+    {
       variant: 'link',
       theme: 'primary',
       class: 'text-purple',
@@ -150,6 +216,16 @@ const icon = tva({
       variant: 'link',
       theme: 'neutral',
       class: 'text-zinc-500',
+    },
+    {
+      variant: 'link',
+      theme: 'secondary',
+      class: 'text-cyan',
+    },
+    {
+      variant: 'link',
+      theme: 'tertiary',
+      class: 'text-pink',
     },
   ],
 })
