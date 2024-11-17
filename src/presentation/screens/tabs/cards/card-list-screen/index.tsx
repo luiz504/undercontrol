@@ -9,7 +9,7 @@ import { VStack, Text, FontAwesome } from '~/presentation/components/ui'
 import { LoadingCenter } from '~/presentation/components/templates/loading-center'
 import { HeaderIconLink } from '~/presentation/components/templates/header-icon-title-link'
 
-import { CardItem } from './components/card-item'
+import { CardItem } from './card-item'
 
 export const CardListScreen: FC = () => {
   const { t } = useTranslation()

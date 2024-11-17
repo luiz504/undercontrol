@@ -59,9 +59,20 @@ export const DrizzleCardRepository = (
     return items.map(DrizzleCardMapper.toDomain)
   }
 
+  const findById: CardsRepository['findById'] = async (id: string) => {
+    const item = await database.query.card.findFirst({
+      where: eq(Schemas.card.id, id),
+    })
+    if (!item) {
+      return null
+    }
+    return DrizzleCardMapper.toDomain(item)
+  }
+
   return {
     insert,
     findMany,
     update,
+    findById,
   }
 }
