@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "9397d9cd-d7c1-40da-b206-b8d57919eea2",
+  "id": "a477a863-a752-4327-bdd6-3f1b3ac1f11e",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "cards": {
@@ -64,8 +64,8 @@
           "columns": ["id"],
           "isUnique": true
         },
-        "cards_label_unique": {
-          "name": "cards_label_unique",
+        "card_label_unique": {
+          "name": "card_label_unique",
           "columns": ["label"],
           "isUnique": true
         }

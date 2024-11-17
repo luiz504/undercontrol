@@ -1,4 +1,10 @@
 {
+  "CARD_CREATE": {
+    "TITLE": {
+      "ERROR": "Error al crear la tarjeta",
+      "SUCCESS": "¡Tarjeta creada con éxito!"
+    }
+  },
   "CARD_LIST": {
     "CREATE_CARD_INSTRUCTION": "Toca el botón de abajo para añadir tu primera tarjeta.",
     "EMPTY": "Aún no has añadido ninguna tarjeta de crédito."
@@ -9,9 +15,11 @@
   "Credit_card_plural": "Tarjetas de Crédito",
   "Currency": "Moneda",
   "DATE_RANGE_INVALID_ERROR": "El rango de fechas debe estar entre 01 y 28",
+  "DUE_DATE_CLOSING_DATE_INVALID_ERROR": "La fecha de vencimiento debe ser diferente de la fecha de cierre.",
   "Due_date": "Fecha de Vencimiento",
   "English": "Inglés",
   "Enter": "Entrar",
+  "GENERIC_CREATION_ERROR": "Algo salió mal. Por favor, inténtalo de nuevo.",
   "INVALID_DATE_ERROR": "Formato esperado: DD",
   "Institution": "Institución",
   "Label": "Etiqueta",
@@ -25,5 +33,7 @@
   "Select...": "Seleccionar...",
   "Settings": "Configuraciones",
   "Spanish": "Español",
-  "Summary": "Sumario"
+  "Summary": "Sumario",
+  "UNIQUE_LABEL_CREATION_ERROR": "Esta etiqueta ya existe. Por favor, elige un nombre diferente.",
+  "CREDIT_CARD_PLACEHOLDER": "Nombre de la tarjeta (por ejemplo, Visa Personal)"
 }

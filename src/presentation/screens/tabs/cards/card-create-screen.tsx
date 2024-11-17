@@ -15,13 +15,14 @@ import {
   Button,
 } from '~/presentation/components/ui'
 import { currencyOptions } from '~/presentation/constants/currency-options'
-import { dueDayOptions } from '~/presentation/constants/due-day-options'
+import { DAY_OPTIONS } from '~/presentation/constants/due-day-options'
 
 import { cardSchema } from '~/domain/entities/Card'
 import { useCardsRepository } from '~/hooks/repositories/use-cards-repository'
 
 import { useToast } from '~/presentation/components/ui/toast'
 import { useQueryClient } from '@tanstack/react-query'
+import { UniqueConstraintError } from '~/domain/errors'
 
 const formSchema = cardSchema.pick({
   label: true,
@@ -48,18 +49,22 @@ export const CardCreateScreen: FC = () => {
     try {
       await cardRepository.insert(data)
       toast.show({
-        title: t('CARD_CREATE.SUCCESS'),
+        title: t('CARD_CREATE.TITLE.SUCCESS'),
       })
       queryClient.refetchQueries({ queryKey: ['cards-list'] })
       router.back()
     } catch (err) {
-      let msg = 'CARD_CREATE.UNKNOWN_ERROR'
+      let msg = 'GENERIC_CREATION_ERROR'
       if (err instanceof ZodError) {
         msg = err.issues[0].message
       }
+      if (err instanceof UniqueConstraintError) {
+        msg = 'UNIQUE_LABEL_CREATION_ERROR'
+        setFocus('label')
+      }
       toast.show({
         type: 'error',
-        title: t('CARD_CREATE.ERROR'),
+        title: t('CARD_CREATE.TITLE.ERROR'),
         description: t(msg),
       })
     }
@@ -78,11 +83,12 @@ export const CardCreateScreen: FC = () => {
           <Controller
             control={control}
             name="label"
-            render={({ field: { ref, onChange } }) => (
+            render={({ field: { ref, value, onChange } }) => (
               <Input
                 ref={ref}
+                defaultValue={value}
                 onChangeText={onChange}
-                placeholder="Card xxx"
+                placeholder={t('CREDIT_CARD_PLACEHOLDER')}
                 maxLength={30}
                 error={errors.label?.message}
                 onSubmitEditing={() => setFocus('closingDate')}
@@ -99,9 +105,9 @@ export const CardCreateScreen: FC = () => {
             render={({ field: { ref, value, onChange } }) => (
               <Select
                 ref={ref}
-                options={dueDayOptions}
+                options={DAY_OPTIONS}
                 onValueChange={(option) => onChange(option.value)}
-                value={dueDayOptions.find((d) => d.value === value)}
+                value={DAY_OPTIONS.find((d) => d.value === value)}
                 error={errors.closingDate?.message}
               />
             )}
@@ -116,9 +122,9 @@ export const CardCreateScreen: FC = () => {
             render={({ field: { ref, value, onChange } }) => (
               <Select
                 ref={ref}
-                options={dueDayOptions}
+                options={DAY_OPTIONS}
                 onValueChange={(option) => onChange(option.value)}
-                value={dueDayOptions.find((d) => d.value === value)}
+                value={DAY_OPTIONS.find((d) => d.value === value)}
                 error={errors.dueDate?.message}
               />
             )}

@@ -3,7 +3,7 @@ import { sqliteTable, text } from 'drizzle-orm/sqlite-core'
 
 export const card = sqliteTable('cards', {
   id: text('id', { length: 36 }).primaryKey().unique(),
-  label: text('label').unique().notNull(),
+  label: text('label').unique('card_label_unique').notNull(),
   closingDate: text('closing_date', { length: 2 }).notNull(),
   dueDate: text('due_date', { length: 2 }).notNull(),
   currency: text('currency', {

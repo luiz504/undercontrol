@@ -2,7 +2,7 @@ import { eq } from 'drizzle-orm'
 
 import { Card, CardEntity, CardInsertDTO } from '~/domain/entities/Card'
 import { CardsRepository } from '~/domain/repositories/cards-repository'
-import { ResourceNotFoundError } from '~/domain/errors'
+import { ResourceNotFoundError, UniqueConstraintError } from '~/domain/errors'
 import { DrizzleCardMapper } from '../mappers/drizzle-card-mapper'
 
 import { DrizzleDatabase, Schemas } from '../types'
@@ -15,10 +15,18 @@ export const DrizzleCardRepository = (
     params: CardInsertDTO,
   ): Promise<void> => {
     const values = CardEntity.insert(params)
-
-    await database
-      .insert(Schemas.card)
-      .values(DrizzleCardMapper.toPersistance(values))
+    try {
+      await database
+        .insert(Schemas.card)
+        .values(DrizzleCardMapper.toPersistance(values))
+    } catch (err) {
+      if (err instanceof Error) {
+        if (err.message.includes('UNIQUE constraint failed')) {
+          throw new UniqueConstraintError()
+        }
+      }
+      throw err
+    }
   }
 
   const update: CardsRepository['update'] = async (params) => {

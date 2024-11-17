@@ -9,7 +9,7 @@ export const Heading = forwardRef<ElementRef<typeof Text>, Props>(
       <Text
         ref={ref}
         className={cn(
-          'font-heading text-2xl font-bold tracking-tight text-white',
+          'text-2xl font-bold tracking-tight text-white',
           className,
         )}
         {...rest}

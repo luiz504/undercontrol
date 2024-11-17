@@ -9,7 +9,7 @@ CREATE TABLE `cards` (
 );
 --> statement-breakpoint
 CREATE UNIQUE INDEX `cards_id_unique` ON `cards` (`id`);--> statement-breakpoint
-CREATE UNIQUE INDEX `cards_label_unique` ON `cards` (`label`);--> statement-breakpoint
+CREATE UNIQUE INDEX `card_label_unique` ON `cards` (`label`);--> statement-breakpoint
 CREATE TABLE `reserves` (
 	`id` text(36) PRIMARY KEY NOT NULL,
 	`label` text NOT NULL,

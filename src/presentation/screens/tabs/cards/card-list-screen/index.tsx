@@ -1,21 +1,14 @@
 import { FC } from 'react'
 import { FlatList } from 'react-native'
-import { Link } from 'expo-router'
-import { Plus } from 'lucide-react-native'
 import { useTranslation } from 'react-i18next'
 import { useQuery } from '@tanstack/react-query'
 
 import { useCardsRepository } from '~/hooks/repositories/use-cards-repository'
 
-import {
-  VStack,
-  Box,
-  Text,
-  FontAwesome,
-  Button,
-} from '~/presentation/components/ui'
+import { VStack, Text, FontAwesome } from '~/presentation/components/ui'
 import { LoadingCenter } from '~/presentation/components/templates/loading-center'
-import { HeaderIconTitle } from '~/presentation/components/templates/header-icon-title'
+import { HeaderIconLink } from '~/presentation/components/templates/header-icon-title-link'
+
 import { CardItem } from './components/card-item'
 
 export const CardListScreen: FC = () => {
@@ -29,11 +22,13 @@ export const CardListScreen: FC = () => {
 
   return (
     <VStack className="flex-1 px-8">
-      <HeaderIconTitle
+      <HeaderIconLink
         icon={
           <FontAwesome name="credit-card-alt" size={25} className="text-pink" />
         }
         title={t('Credit_card', { count: 3 })}
+        linkTheme="tertiary"
+        href="/cards/create"
       />
 
       <FlatList
@@ -55,17 +50,6 @@ export const CardListScreen: FC = () => {
       />
 
       {isLoading && <LoadingCenter />}
-
-      <Box className="mt-auto py-6">
-        <Link asChild href="/cards/create">
-          <Button
-            variant="outline"
-            theme="tertiary"
-            icon={Plus}
-            label={t('Credit_card')}
-          />
-        </Link>
-      </Box>
     </VStack>
   )
 }

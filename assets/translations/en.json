@@ -1,4 +1,10 @@
 {
+  "CARD_CREATE": {
+    "TITLE": {
+      "ERROR": "Error creating card",
+      "SUCCESS": "Card created successfully!"
+    }
+  },
   "CARD_LIST": {
     "CREATE_CARD_INSTRUCTION": "Tap the button below to add your first card.",
     "EMPTY": "You haven’t added any credit cards yet."
@@ -9,9 +15,11 @@
   "Credit_card_plural": "Credit Cards",
   "Currency": "Currency",
   "DATE_RANGE_INVALID_ERROR": "Date range must be between 01 and 28",
+  "DUE_DATE_CLOSING_DATE_INVALID_ERROR": "The due date must be different from the closing date.",
   "Due_date": "Due date",
   "English": "English",
   "Enter": "Enter",
+  "GENERIC_CREATION_ERROR": "Something went wrong. Please try again.",
   "INVALID_DATE_ERROR": "Expected format: DD",
   "Institution": "Institution",
   "Label": "Label",
@@ -25,5 +33,7 @@
   "Select...": "Select...",
   "Settings": "Settings",
   "Spanish": "Spanish",
-  "Summary": "Summary"
+  "Summary": "Summary",
+  "UNIQUE_LABEL_CREATION_ERROR": "This label already exists. Please choose a different name.",
+  "CREDIT_CARD_PLACEHOLDER": "Card name (e.g., Personal Visa)"
 }

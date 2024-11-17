@@ -1,23 +1,24 @@
 import { FC } from 'react'
 import { FlatList } from 'react-native'
-import { Plus } from 'lucide-react-native'
 import { useTranslation } from 'react-i18next'
 
-import { Button, FontAwesome6, VStack } from '~/presentation/components/ui'
+import { HeaderIconLink } from '~/presentation/components/templates/header-icon-title-link'
+import { FontAwesome6, VStack } from '~/presentation/components/ui'
 import { mockReserves } from './components/mock-reserves'
 import { ReserveItem } from './components/reserve-item'
-import { HeaderIconTitle } from '~/presentation/components/templates/header-icon-title'
 
 export const ReservesScreen: FC = () => {
   const { t } = useTranslation()
 
   return (
     <VStack className="flex-1 px-8 pb-8">
-      <HeaderIconTitle
+      <HeaderIconLink
         icon={
           <FontAwesome6 size={25} name="piggy-bank" className="text-cyan" />
         }
         title={t('Provisioning_reserves')}
+        linkTheme="secondary"
+        href="/reserves"
       />
 
       <FlatList
@@ -28,13 +29,6 @@ export const ReservesScreen: FC = () => {
         renderItem={({ item }) => (
           <ReserveItem item={{ ...item, balance: -10 }} />
         )}
-      />
-
-      <Button
-        variant="outline"
-        theme="secondary"
-        icon={Plus}
-        label={t('Reserve')}
       />
     </VStack>
   )

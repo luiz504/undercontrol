@@ -13,14 +13,17 @@ const validateClosingDateAndDueDate = ({
 }) => {
   const _closingDate = Number(closingDate)
   const _dueDate = Number(dueDate)
-  return _closingDate > _dueDate
+  return _closingDate !== _dueDate
 }
+
 export const cardSchema = z.object({
   id: z.string().uuid(),
   label: z
     .string({ required_error: 'REQUIRED_FIELD_ERROR' })
     .min(3, { message: 'MIN_LENGTH_3_ERROR' })
-    .max(30, { message: 'MAX_LENGTH_30_ERROR' }),
+    .max(30, { message: 'MAX_LENGTH_30_ERROR' })
+    .trim()
+    .toLowerCase(),
   closingDate: z
     .string({ required_error: 'REQUIRED_FIELD_ERROR' })
     .min(2, { message: 'INVALID_DATE_ERROR' })
@@ -49,7 +52,7 @@ const cardInsertSchema = cardSchema
     updatedAt: true,
   })
   .refine((data) => validateClosingDateAndDueDate(data), {
-    message: 'Closing date must be greater than due date',
+    message: 'DUE_DATE_CLOSING_DATE_INVALID_ERROR',
   })
 
 const cardUpdateSchema = cardSchema
