@@ -5,7 +5,7 @@ import { tva } from '@gluestack-ui/nativewind-utils/tva'
 import { VariantProps } from '@gluestack-ui/nativewind-utils'
 
 const styles = tva({
-  base: 'font-bold tracking-tight text-white',
+  base: 'font-header font-bold tracking-tight text-white',
   variants: {
     size: {
       sm: 'text-lg',

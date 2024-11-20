@@ -195,7 +195,7 @@ const icon = tva({
     {
       variant: 'outline',
       theme: 'neutral',
-      class: 'text-zinc-500',
+      class: 'text-white',
     },
     {
       variant: 'outline',
@@ -215,7 +215,7 @@ const icon = tva({
     {
       variant: 'link',
       theme: 'neutral',
-      class: 'text-zinc-500',
+      class: 'text-white',
     },
     {
       variant: 'link',
