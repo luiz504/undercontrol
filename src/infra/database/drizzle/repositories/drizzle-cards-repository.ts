@@ -18,7 +18,7 @@ export const DrizzleCardRepository = (
     try {
       await database
         .insert(Schemas.card)
-        .values(DrizzleCardMapper.toPersistance(values))
+        .values(DrizzleCardMapper.toPersistence(values))
     } catch (err) {
       if (err instanceof Error) {
         if (err.message.includes('UNIQUE constraint failed')) {
@@ -56,6 +56,7 @@ export const DrizzleCardRepository = (
 
   const findMany: CardsRepository['findMany'] = async (): Promise<Card[]> => {
     const items = await database.query.card.findMany({ limit: 30 })
+
     return items.map(DrizzleCardMapper.toDomain)
   }
 

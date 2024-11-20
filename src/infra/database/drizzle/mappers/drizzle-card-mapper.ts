@@ -17,7 +17,7 @@ export class DrizzleCardMapper {
     })
   }
 
-  static toPersistance(
+  static toPersistence(
     props: CardInsertDTO,
   ): InferInsertModel<typeof Schemas.card> {
     return {
