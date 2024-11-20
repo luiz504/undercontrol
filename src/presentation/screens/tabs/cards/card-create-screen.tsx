@@ -4,14 +4,12 @@ import { useTranslation } from 'react-i18next'
 import { KeyboardAvoidingView, ScrollView } from 'react-native'
 import { Controller, useForm } from 'react-hook-form'
 import { z, ZodError } from 'zod'
-import { useQueryClient } from '@tanstack/react-query'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import { cardSchema } from '~/domain/entities/Card'
 import { UniqueConstraintError } from '~/domain/errors'
 
-import { QueryKeys } from '~/infra/cache/query-keys'
-import { useCardsRepository } from '~/hooks/repositories/use-cards-repository'
+import { useCardsRepository } from '~/data/hooks/repositories/use-cards-repository'
 
 import { HeaderIconTitle } from '~/presentation/components/templates/header-icon-title'
 import {
@@ -24,6 +22,7 @@ import {
 import { currencyOptions } from '~/presentation/constants/currency-options'
 import { DAY_OPTIONS } from '~/presentation/constants/due-day-options'
 import { useToast } from '~/presentation/components/ui/toast'
+import { useQueryInvalidator } from '~/data/hooks/queries/useQueryInvalidator'
 
 const formSchema = cardSchema.pick({
   label: true,
@@ -34,10 +33,10 @@ const formSchema = cardSchema.pick({
 
 type FormData = z.infer<typeof formSchema>
 export const CardCreateScreen: FC = () => {
-  const cardRepository = useCardsRepository()
-  const queryClient = useQueryClient()
   const toast = useToast()
   const { t } = useTranslation()
+  const { invalidateFetchCards } = useQueryInvalidator()
+  const cardRepository = useCardsRepository()
   const {
     control,
     handleSubmit,
@@ -52,7 +51,7 @@ export const CardCreateScreen: FC = () => {
       toast.show({
         title: t('CARD_CREATE.TITLE.SUCCESS'),
       })
-      queryClient.refetchQueries({ queryKey: QueryKeys.CARDS.FETCH })
+      await invalidateFetchCards()
       router.back()
     } catch (err) {
       let msg = 'GENERIC_CREATION_ERROR'

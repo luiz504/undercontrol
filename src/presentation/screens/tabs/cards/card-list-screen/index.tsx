@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { FlatList } from 'react-native'
 import { useTranslation } from 'react-i18next'
 
-import { useFetchCardsQuery } from '~/hooks/queries/useFetchCardsQuery'
+import { useFetchCardsQuery } from '~/data/hooks/queries/useFetchCardsQuery'
 
 import { VStack, Text, FontAwesome } from '~/presentation/components/ui'
 import { LoadingCenter } from '~/presentation/components/templates/loading-center'

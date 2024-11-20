@@ -4,6 +4,6 @@ export const QueryKeys = {
     GET_BY_ID: (id: string) => ['CARDS', 'GET_BY_ID', id],
   },
   TRANSACTIONS: {
-    GET_BY_CARD_ID: (id: string) => ['TRANSACTIONS', 'GET_BY_CARD_ID', id],
+    FETCH_BY_CARD_ID: (id: string) => ['TRANSACTIONS', 'GET_BY_CARD_ID', id],
   },
 }

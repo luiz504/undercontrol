@@ -5,8 +5,8 @@ import { ChevronLeft, Plus } from 'lucide-react-native'
 import { useTranslation } from 'react-i18next'
 import { format } from 'date-fns'
 
-import { useGetCardByIdQuery } from '~/hooks/queries/useGetCardByIdQuery'
-import { useFetchCardTransactionsQuery } from '~/hooks/queries/useFetchCardTransactionsQuery'
+import { useGetCardByIdQuery } from '~/data/hooks/queries/useGetCardByIdQuery'
+import { useFetchCardTransactionsQuery } from '~/data/hooks/queries/useFetchCardTransactionsQuery'
 
 import { LoadingCenter } from '~/presentation/components/templates/loading-center'
 import {
@@ -92,6 +92,7 @@ export const CardDetailsScreen: FC = () => {
         <FlatList
           data={transactions}
           keyExtractor={(item) => item.id}
+          contentContainerClassName="gap-3"
           renderItem={({ item }) => (
             <View
               key={item.id}

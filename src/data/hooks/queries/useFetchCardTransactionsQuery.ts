@@ -16,7 +16,7 @@ export const useFetchCardTransactionsQuery = (
 ) => {
   const transactionsRepository = useTransactionsRepository()
   return useQuery({
-    queryKey: [QueryKeys.TRANSACTIONS.GET_BY_CARD_ID(cardId)],
+    queryKey: [QueryKeys.TRANSACTIONS.FETCH_BY_CARD_ID(cardId)],
     queryFn: () => transactionsRepository.findManyByCardId(cardId),
     ...options,
   })

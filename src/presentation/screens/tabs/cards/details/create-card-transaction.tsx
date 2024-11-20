@@ -1,13 +1,16 @@
 import { FC } from 'react'
 import { useLocalSearchParams, router, Link } from 'expo-router'
 import { useTranslation } from 'react-i18next'
-import { useQueryClient } from '@tanstack/react-query'
 import { ChevronLeft } from 'lucide-react-native'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z, ZodError } from 'zod'
 
-import { useTransactionsRepository } from '~/hooks/repositories/user-transactions-repository'
+import { transactionInsertSchema } from '~/domain/entities/Transaction'
+
+import { useQueryInvalidator } from '~/data/hooks/queries/useQueryInvalidator'
+import { useTransactionsRepository } from '~/data/hooks/repositories/user-transactions-repository'
+import { useGetCardByIdQuery } from '~/data/hooks/queries/useGetCardByIdQuery'
 
 import { LoadingCenter } from '~/presentation/components/templates/loading-center'
 import { useToast } from '~/presentation/components/ui/toast'
@@ -23,8 +26,6 @@ import {
 import { DatePicker } from '~/presentation/components/ui/date-picker'
 
 import { CardItem } from '../card-list-screen/card-item'
-import { transactionInsertSchema } from '~/domain/entities/Transaction'
-import { useGetCardByIdQuery } from '~/hooks/queries/useGetCardByIdQuery'
 
 const formSchema = transactionInsertSchema.pick({
   amount: true,
@@ -35,13 +36,13 @@ const formSchema = transactionInsertSchema.pick({
 type FormData = z.infer<typeof formSchema>
 
 export const CreateCardTransaction: FC = () => {
-  const { t } = useTranslation()
-  const queryClient = useQueryClient()
-  const transactionsRepository = useTransactionsRepository()
-  const toast = useToast()
-
   const { id } = useLocalSearchParams<{ id: string }>()
 
+  const { t } = useTranslation()
+  const toast = useToast()
+
+  const { invalidateFetchTransactionsByCardId } = useQueryInvalidator()
+  const transactionsRepository = useTransactionsRepository()
   const { data, isLoading } = useGetCardByIdQuery({
     cardId: id,
     onSuccess: (card) => {
@@ -74,9 +75,7 @@ export const CreateCardTransaction: FC = () => {
       toast.show({
         title: t('TRANSACTION_CREATE.TITLE.SUCCESS'),
       })
-      queryClient.invalidateQueries({
-        queryKey: ['card-details', { cardId: id }],
-      })
+      await invalidateFetchTransactionsByCardId(id)
       router.push(`/(tabs)/cards/details/${id}`)
     } catch (err) {
       let msg = 'GENERIC_CREATION_ERROR'
