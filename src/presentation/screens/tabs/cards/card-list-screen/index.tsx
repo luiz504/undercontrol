@@ -1,24 +1,18 @@
 import { FC } from 'react'
 import { FlatList } from 'react-native'
 import { useTranslation } from 'react-i18next'
-import { useQuery } from '@tanstack/react-query'
 
-import { useCardsRepository } from '~/hooks/repositories/use-cards-repository'
+import { useFetchCardsQuery } from '~/hooks/queries/useFetchCardsQuery'
 
 import { VStack, Text, FontAwesome } from '~/presentation/components/ui'
 import { LoadingCenter } from '~/presentation/components/templates/loading-center'
 import { HeaderIconLink } from '~/presentation/components/templates/header-icon-title-link'
-
 import { CardItem } from './card-item'
 
 export const CardListScreen: FC = () => {
   const { t } = useTranslation()
-  const { findMany } = useCardsRepository()
 
-  const { data: cards, isLoading } = useQuery({
-    queryKey: ['cards-list'],
-    queryFn: findMany,
-  })
+  const { data: cards, isLoading } = useFetchCardsQuery()
 
   return (
     <VStack className="flex-1 px-8">

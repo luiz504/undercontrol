@@ -21,7 +21,9 @@ export const CardItem: FC<Props> = ({ item }) => {
       <TouchableOpacity className="rounded-md border border-pink-secondary bg-pink-transparent p-4">
         <HStack className="mb-2 items-center gap-3">
           <FontAwesome name="credit-card-alt" size={20} className="text-pink" />
-          <Heading> {item.label}</Heading>
+          <Heading size="md" className="capitalize">
+            {item.label}
+          </Heading>
         </HStack>
         <HStack className="gap-3">
           <HStack className="items-center gap-2">

@@ -4,8 +4,15 @@ import { useTranslation } from 'react-i18next'
 import { KeyboardAvoidingView, ScrollView } from 'react-native'
 import { Controller, useForm } from 'react-hook-form'
 import { z, ZodError } from 'zod'
-
+import { useQueryClient } from '@tanstack/react-query'
 import { zodResolver } from '@hookform/resolvers/zod'
+
+import { cardSchema } from '~/domain/entities/Card'
+import { UniqueConstraintError } from '~/domain/errors'
+
+import { QueryKeys } from '~/infra/cache/query-keys'
+import { useCardsRepository } from '~/hooks/repositories/use-cards-repository'
+
 import { HeaderIconTitle } from '~/presentation/components/templates/header-icon-title'
 import {
   Input,
@@ -16,13 +23,7 @@ import {
 } from '~/presentation/components/ui'
 import { currencyOptions } from '~/presentation/constants/currency-options'
 import { DAY_OPTIONS } from '~/presentation/constants/due-day-options'
-
-import { cardSchema } from '~/domain/entities/Card'
-import { useCardsRepository } from '~/hooks/repositories/use-cards-repository'
-
 import { useToast } from '~/presentation/components/ui/toast'
-import { useQueryClient } from '@tanstack/react-query'
-import { UniqueConstraintError } from '~/domain/errors'
 
 const formSchema = cardSchema.pick({
   label: true,
@@ -51,7 +52,7 @@ export const CardCreateScreen: FC = () => {
       toast.show({
         title: t('CARD_CREATE.TITLE.SUCCESS'),
       })
-      queryClient.refetchQueries({ queryKey: ['cards-list'] })
+      queryClient.refetchQueries({ queryKey: QueryKeys.CARDS.FETCH })
       router.back()
     } catch (err) {
       let msg = 'GENERIC_CREATION_ERROR'
@@ -78,7 +79,7 @@ export const CardCreateScreen: FC = () => {
           title={t('Credit_card')}
         />
 
-        <Form.Section className="my-4">
+        <Form.VGroup className="my-4">
           <Form.Label>{t('Label')}</Form.Label>
           <Controller
             control={control}
@@ -95,9 +96,9 @@ export const CardCreateScreen: FC = () => {
               />
             )}
           />
-        </Form.Section>
+        </Form.VGroup>
 
-        <Form.Section className="mb-4">
+        <Form.VGroup className="mb-4">
           <Form.Label>{t('Closing_date')}</Form.Label>
           <Controller
             control={control}
@@ -112,9 +113,9 @@ export const CardCreateScreen: FC = () => {
               />
             )}
           />
-        </Form.Section>
+        </Form.VGroup>
 
-        <Form.Section className="mb-4">
+        <Form.VGroup className="mb-4">
           <Form.Label>{t('Due_date')}</Form.Label>
           <Controller
             control={control}
@@ -129,9 +130,9 @@ export const CardCreateScreen: FC = () => {
               />
             )}
           />
-        </Form.Section>
+        </Form.VGroup>
 
-        <Form.Section className="mb-6">
+        <Form.VGroup className="mb-6">
           <Form.Label>{t('Currency')}</Form.Label>
           <Controller
             control={control}
@@ -146,7 +147,7 @@ export const CardCreateScreen: FC = () => {
               />
             )}
           />
-        </Form.Section>
+        </Form.VGroup>
 
         <Button
           theme="tertiary"

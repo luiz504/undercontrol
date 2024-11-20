@@ -12,7 +12,8 @@ export default function CardsLayout() {
     >
       <Stack.Screen name="index" />
       <Stack.Screen name="create" />
-      <Stack.Screen name="details/[id]" />
+      <Stack.Screen name="details/[id]/index" />
+      <Stack.Screen name="details/[id]/create-card-transaction" />
     </Stack>
   )
 }

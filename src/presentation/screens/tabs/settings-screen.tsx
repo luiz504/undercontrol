@@ -17,14 +17,14 @@ export function SettingsScreen() {
         title={t('Settings')}
       />
 
-      <Form.Section>
+      <Form.VGroup>
         <Form.Label>{t('Language')}</Form.Label>
         <Select
           value={languageOptions.find((l) => l.value === i18n.language)}
           options={languageOptions}
           onValueChange={({ value }) => changeLanguage(value as Language)}
         />
-      </Form.Section>
+      </Form.VGroup>
     </VStack>
   )
 }
