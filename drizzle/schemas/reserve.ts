@@ -11,5 +11,5 @@ export const reserve = sqliteTable('reserves', {
   createdAt: text('create_at')
     .notNull()
     .default(sql`CURRENT_TIMESTAMP`),
-  updatedAt: text('update_at'),
+  updatedAt: text('update_at').$onUpdate(() => sql`CURRENT_TIMESTAMP`),
 })
