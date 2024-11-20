@@ -1,7 +1,7 @@
 import { InferInsertModel, InferSelectModel } from 'drizzle-orm'
 import { randomUUID } from 'expo-crypto'
 
-import { Card, CardEntity, CardInsertDTO } from '~/domain/entities/Card'
+import { Card, CardEntity, CardInsertDTO } from '~/domain/entities/card'
 import { Schemas } from '../types'
 
 export class DrizzleCardMapper {

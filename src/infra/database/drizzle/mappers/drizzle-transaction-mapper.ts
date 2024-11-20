@@ -4,7 +4,7 @@ import { randomUUID } from 'expo-crypto'
 import {
   TransactionEntity,
   TransactionInsertDTO,
-} from '~/domain/entities/Transaction'
+} from '~/domain/entities/transaction'
 import { Schemas } from '../types'
 
 export class DrizzleTransactionMapper {

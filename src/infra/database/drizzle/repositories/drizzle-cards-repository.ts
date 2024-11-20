@@ -1,6 +1,6 @@
 import { eq } from 'drizzle-orm'
 
-import { Card, CardEntity, CardInsertDTO } from '~/domain/entities/Card'
+import { Card, CardEntity, CardInsertDTO } from '~/domain/entities/card'
 import { CardsRepository } from '~/domain/repositories/cards-repository'
 import { ResourceNotFoundError, UniqueConstraintError } from '~/domain/errors'
 import { DrizzleCardMapper } from '../mappers/drizzle-card-mapper'

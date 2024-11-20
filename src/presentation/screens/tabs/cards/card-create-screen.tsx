@@ -6,7 +6,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { z, ZodError } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { cardSchema } from '~/domain/entities/Card'
+import { cardSchema } from '~/domain/entities/card'
 import { UniqueConstraintError } from '~/domain/errors'
 
 import { useCardsRepository } from '~/data/hooks/repositories/use-cards-repository'

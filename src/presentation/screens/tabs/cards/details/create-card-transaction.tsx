@@ -6,7 +6,7 @@ import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z, ZodError } from 'zod'
 
-import { transactionInsertSchema } from '~/domain/entities/Transaction'
+import { transactionInsertSchema } from '~/domain/entities/transaction'
 
 import { useQueryInvalidator } from '~/data/hooks/queries/useQueryInvalidator'
 import { useTransactionsRepository } from '~/data/hooks/repositories/user-transactions-repository'

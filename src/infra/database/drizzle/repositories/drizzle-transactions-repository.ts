@@ -5,9 +5,11 @@ import {
   Transaction,
   TransactionEntity,
   TransactionInsertDTO,
-} from '~/domain/entities/Transaction'
+} from '~/domain/entities/transaction'
 import { DrizzleTransactionMapper } from '../mappers/drizzle-transaction-mapper'
 import { eq } from 'drizzle-orm'
+import { TransactionWithCard } from '~/domain/composites/transaction-with-card'
+import { DrizzleTransactionWithCardMapper } from '../mappers/drizzle-transaction-with-card-mapper'
 
 export const DrizzleTransactionRepository = (
   database: DrizzleDatabase,
@@ -32,7 +34,19 @@ export const DrizzleTransactionRepository = (
     return items.map(DrizzleTransactionMapper.toDomain)
   }
 
+  const findMany: TransactionsRepository['findMany'] = async (): Promise<
+    TransactionWithCard[]
+  > => {
+    const items = await database.query.transaction.findMany({
+      with: { card: true },
+      limit: 30,
+    })
+
+    return items.map(DrizzleTransactionWithCardMapper.toDomain)
+  }
+
   return {
+    findMany,
     insert,
     findManyByCardId,
   }

@@ -1,4 +1,4 @@
-import { sql } from 'drizzle-orm'
+import { relations, sql } from 'drizzle-orm'
 
 import { int, sqliteTable, text } from 'drizzle-orm/sqlite-core'
 import { card } from './card'
@@ -21,3 +21,10 @@ export const transaction = sqliteTable('transactions', {
     .references(() => card.id)
     .notNull(),
 })
+
+export const transactionRelations = relations(transaction, ({ one }) => ({
+  card: one(card, {
+    fields: [transaction.cardId],
+    references: [card.id],
+  }),
+}))

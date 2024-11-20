@@ -1,5 +1,6 @@
-import { sql } from 'drizzle-orm'
+import { relations, sql } from 'drizzle-orm'
 import { sqliteTable, text } from 'drizzle-orm/sqlite-core'
+import { transaction } from './transition'
 
 export const card = sqliteTable('cards', {
   id: text('id', { length: 36 }).primaryKey().unique(),
@@ -14,3 +15,7 @@ export const card = sqliteTable('cards', {
     .default(sql`CURRENT_TIMESTAMP`),
   updatedAt: text('update_at').$onUpdate(() => sql`CURRENT_TIMESTAMP`),
 })
+
+export const cardRelations = relations(card, ({ many }) => ({
+  transactions: many(transaction),
+}))

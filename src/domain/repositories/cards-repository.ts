@@ -1,4 +1,4 @@
-import { Card, CardInsertDTO, CardUpdateDTO } from '../entities/Card'
+import { Card, CardInsertDTO, CardUpdateDTO } from '../entities/card'
 
 export interface CardsRepository {
   insert(props: CardInsertDTO): Promise<void>

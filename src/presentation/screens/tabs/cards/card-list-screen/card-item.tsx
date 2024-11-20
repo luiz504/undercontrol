@@ -6,7 +6,7 @@ import {
   FontAwesome,
 } from '~/presentation/components/ui'
 
-import { Card } from '~/domain/entities/Card'
+import { Card } from '~/domain/entities/card'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'expo-router'
 import { TouchableOpacity } from 'react-native'

@@ -2,7 +2,7 @@ import { QueryKeys } from '~/infra/cache/query-keys'
 
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
 
-import { Card } from '~/domain/entities/Card'
+import { Card } from '~/domain/entities/card'
 import { useCardsRepository } from '../repositories/use-cards-repository'
 
 type Options = Omit<
