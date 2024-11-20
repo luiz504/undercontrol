@@ -40,7 +40,9 @@ SplashScreen.preventAutoHideAsync()
 export default function RootLayout() {
   const drizzle = useDrizzle()
   const [loaded, error] = useFonts({
-    SpaceMono: require('assets/fonts/SpaceMono-Regular.ttf'),
+    RobotoRegular: require('assets/fonts/Roboto-Regular.ttf'),
+    RobotoMedium: require('assets/fonts/Roboto-Medium.ttf'),
+    RobotoBold: require('assets/fonts/Roboto-Bold.ttf'),
     ...FontAwesome.font,
   })
 

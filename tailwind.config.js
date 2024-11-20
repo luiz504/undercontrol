@@ -6,6 +6,14 @@ const config = {
   presets: [require('nativewind/preset')],
   theme: {
     extend: {
+      fontFamily: {
+        header: ['RobotoBold'],
+        label: ['RobotoMedium'],
+        body: ['RobotoRegular'],
+        RobotoRegular: ['RobotoRegular'],
+        RobotoMedium: ['RobotoMedium'],
+        RobotoBold: ['RobotoBold'],
+      },
       colors,
     },
   },
