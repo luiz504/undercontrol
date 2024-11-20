@@ -9,7 +9,7 @@ export const useQueryInvalidator = () => {
       queryKey: [QueryKeys.TRANSACTIONS.FETCH_BY_CARD_ID(cardId)],
     })
   const invalidateFetchCards = () =>
-    queryClient.refetchQueries({ queryKey: QueryKeys.CARDS.FETCH })
+    queryClient.invalidateQueries({ queryKey: [QueryKeys.CARDS.FETCH] })
   return {
     invalidateFetchCards,
     invalidateFetchTransactionsByCardId,
