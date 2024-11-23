@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { useTranslationsHelpers } from '~/hooks/translations/useTranslationHelpers'
+import { useTranslationsHelpers } from '~/infra/internationalization/hooks/useTranslationHelpers'
 import { Language } from '~/infra/internationalization/constants'
 
 import { FontAwesome, Form, Select, VStack } from '~/presentation/components/ui'

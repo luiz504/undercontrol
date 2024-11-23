@@ -1,4 +1,4 @@
-import { useFocusEffect } from 'expo-router'
+import { useFocusEffect } from '@react-navigation/native'
 import { useCallback, useRef } from 'react'
 
 export function useQueryFocusAware() {

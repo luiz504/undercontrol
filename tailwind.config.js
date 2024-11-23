@@ -1,4 +1,4 @@
-import { colors } from './src/styles/theme/colors'
+import { colors } from './src/presentation/styles/theme/colors'
 
 /** @type {import('tailwindcss').Config} */
 const config = {

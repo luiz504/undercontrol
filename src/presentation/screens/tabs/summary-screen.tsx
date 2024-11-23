@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { FlatList } from 'react-native'
 import { useTranslation } from 'react-i18next'
 
 import { useFetchTransactionsQuery } from '~/data/hooks/queries/useFetchTransactionsQuery'
@@ -7,7 +8,6 @@ import { HeaderIconTitle } from '~/presentation/components/templates/header-icon
 import { Button, Entypo, Text, VStack } from '~/presentation/components/ui'
 
 import { useQueryFocusAware } from '~/infra/cache/use-query-focus-aware'
-import { FlatList } from 'react-native'
 
 export function SummaryScreen() {
   const { t } = useTranslation()

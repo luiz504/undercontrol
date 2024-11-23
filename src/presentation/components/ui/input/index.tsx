@@ -7,7 +7,7 @@ import { HStack } from '../hstack'
 import { Form } from '../form'
 
 import { inputStyle } from './styles'
-import { colors } from '~/styles/theme/colors'
+import { colors } from '~/presentation/styles/theme/colors'
 
 type InputProps = ComponentProps<typeof RNTextInput> & {
   error?: string

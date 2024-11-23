@@ -22,7 +22,15 @@ export const CardListScreen: FC = () => {
         }
         title={t('Credit_card', { count: 3 })}
         linkTheme="tertiary"
-        href="/cards/create"
+        linkProps={{
+          screen: '(Protected)',
+          params: {
+            screen: 'Cards',
+            params: {
+              screen: 'Create',
+            },
+          },
+        }}
       />
 
       <FlatList

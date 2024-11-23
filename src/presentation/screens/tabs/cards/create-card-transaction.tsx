@@ -1,5 +1,4 @@
 import { FC } from 'react'
-import { useLocalSearchParams, router, Link } from 'expo-router'
 import { useTranslation } from 'react-i18next'
 import { ChevronLeft } from 'lucide-react-native'
 import { Controller, useForm } from 'react-hook-form'
@@ -25,7 +24,9 @@ import {
 } from '~/presentation/components/ui'
 import { DatePicker } from '~/presentation/components/ui/date-picker'
 
-import { CardItem } from '../card-list-screen/card-item'
+import { CardItem } from './card-list-screen/card-item'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { CardsStackParamList } from '~/main/routes/types'
 
 const formSchema = transactionInsertSchema.pick({
   amount: true,
@@ -35,9 +36,16 @@ const formSchema = transactionInsertSchema.pick({
 })
 type FormData = z.infer<typeof formSchema>
 
-export const CreateCardTransaction: FC = () => {
-  const { id } = useLocalSearchParams<{ id: string }>()
-
+type Props = NativeStackScreenProps<
+  CardsStackParamList,
+  'CreateCardTransaction'
+>
+export const CreateCardTransactionScreen: FC<Props> = ({
+  route: {
+    params: { id },
+  },
+  navigation,
+}) => {
   const { t } = useTranslation()
   const toast = useToast()
 
@@ -51,7 +59,7 @@ export const CreateCardTransaction: FC = () => {
           type: 'error',
           title: 'Card not found',
         })
-        router.replace('/(tabs)/cards')
+        navigation.goBack()
       }
     },
   })
@@ -76,7 +84,7 @@ export const CreateCardTransaction: FC = () => {
         title: t('TRANSACTION_CREATE.TITLE.SUCCESS'),
       })
       await invalidateFetchTransactionsByCardId(id)
-      router.push(`/(tabs)/cards/details/${id}`)
+      navigation.goBack()
     } catch (err) {
       let msg = 'GENERIC_CREATION_ERROR'
       if (err instanceof ZodError) {
@@ -97,9 +105,13 @@ export const CreateCardTransaction: FC = () => {
     <VStack className="flex-1 px-8">
       <VStack className="mb-8 mt-4 gap-4">
         <HStack className="items-center gap-3">
-          <Link asChild href={`/(tabs)/cards/details/${id}`}>
-            <Button variant="link" theme="neutral" icon={ChevronLeft} />
-          </Link>
+          <Button
+            variant="link"
+            theme="neutral"
+            icon={ChevronLeft}
+            onPress={() => navigation.goBack()}
+          />
+
           <Heading className="capitalize">Add transaction</Heading>
         </HStack>
 

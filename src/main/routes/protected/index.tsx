@@ -1,13 +1,23 @@
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { cn } from '@gluestack-ui/nativewind-utils/cn'
-import { Tabs } from 'expo-router'
+
+import { colors } from '~/presentation/styles/theme/colors'
 
 import { Entypo, FontAwesome } from '~/presentation/components/ui/vector-icons'
-import { colors } from '~/styles/theme/colors'
+import { SummaryScreen } from '~/presentation/screens/tabs/summary-screen'
+import { SettingsScreen } from '~/presentation/screens/tabs/settings-screen'
 
-export default function TabLayout() {
+import { ProtectedTabParamList } from '../types'
+
+import { CardsStackRoutes } from './cards'
+
+const Tab = createBottomTabNavigator<ProtectedTabParamList>()
+
+export const ProtectedTabRoutes = () => {
   return (
-    <Tabs
+    <Tab.Navigator
       screenOptions={{
+        headerShown: false,
         tabBarActiveTintColor: colors.purple.DEFAULT,
         tabBarInactiveTintColor: colors.disabled,
         tabBarStyle: {
@@ -21,21 +31,20 @@ export default function TabLayout() {
         tabBarItemStyle: {
           paddingVertical: 10,
         },
-        headerShown: false,
-        headerTintColor: 'red',
-        sceneStyle: { backgroundColor: colors.black.DEFAULT },
       }}
     >
-      <Tabs.Screen
-        name="index"
+      <Tab.Screen
+        name="Summary"
+        component={SummaryScreen}
         options={{
           tabBarIcon: ({ color }) => (
             <Entypo size={28} name="line-graph" color={color} />
           ),
         }}
       />
-      <Tabs.Screen
-        name="cards"
+      <Tab.Screen
+        name="Cards"
+        component={CardsStackRoutes}
         options={{
           tabBarIcon: ({ focused }) => (
             <FontAwesome
@@ -46,8 +55,9 @@ export default function TabLayout() {
           ),
         }}
       />
-      <Tabs.Screen
-        name="settings"
+      <Tab.Screen
+        name="Settings"
+        component={SettingsScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <FontAwesome
@@ -58,6 +68,6 @@ export default function TabLayout() {
           ),
         }}
       />
-    </Tabs>
+    </Tab.Navigator>
   )
 }

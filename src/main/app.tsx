@@ -1,11 +1,11 @@
-import { FC, useEffect } from 'react'
+import { useEffect } from 'react'
 import {
   SafeAreaProvider,
   initialWindowMetrics,
 } from 'react-native-safe-area-context'
 import { useFonts } from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
-import { Stack } from 'expo-router'
+
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { SQLiteProvider } from 'expo-sqlite'
 
@@ -21,13 +21,10 @@ import {
 } from '~/infra/database/drizzle/hooks/use-drizzle'
 import { QueryProvider } from '~/infra/cache/query-provider'
 import { StatusBar } from 'expo-status-bar'
-import { colors } from '~/styles/theme/colors'
-import { LoadingCenter } from '~/presentation/components/templates/loading-center'
 
-export {
-  // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
-} from 'expo-router'
+import { LoadingCenter } from '~/presentation/components/templates/loading-center'
+import { Routes } from './routes'
+import { SessionProvider } from '~/presentation/context/session/provider'
 
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
@@ -37,7 +34,7 @@ export const unstable_settings = {
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
 
-export default function RootLayout() {
+export function App() {
   const drizzle = useDrizzle()
   const [loaded, error] = useFonts({
     RobotoRegular: require('assets/fonts/Roboto-Regular.ttf'),
@@ -62,29 +59,17 @@ export default function RootLayout() {
       <StatusBar style="light" translucent backgroundColor="transparent" />
 
       <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-        <QueryProvider>
-          <GluestackUIProvider>
-            {!loaded && <LoadingCenter />}
-            {loaded && <RootLayoutNav />}
-          </GluestackUIProvider>
-        </QueryProvider>
+        <SQLiteProvider databaseName={DATABASE_NAME}>
+          <QueryProvider>
+            <SessionProvider>
+              <GluestackUIProvider>
+                {!loaded && <LoadingCenter />}
+                {loaded && <Routes />}
+              </GluestackUIProvider>
+            </SessionProvider>
+          </QueryProvider>
+        </SQLiteProvider>
       </SafeAreaProvider>
     </>
-  )
-}
-
-const RootLayoutNav: FC = () => {
-  return (
-    <SQLiteProvider databaseName={DATABASE_NAME}>
-      <Stack
-        screenOptions={{
-          contentStyle: { backgroundColor: colors.black.DEFAULT },
-        }}
-      >
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-      </Stack>
-    </SQLiteProvider>
   )
 }

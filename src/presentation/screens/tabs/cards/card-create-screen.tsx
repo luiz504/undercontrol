@@ -1,5 +1,4 @@
 import { FC } from 'react'
-import { router } from 'expo-router'
 import { useTranslation } from 'react-i18next'
 import { KeyboardAvoidingView, ScrollView } from 'react-native'
 import { Controller, useForm } from 'react-hook-form'
@@ -23,6 +22,8 @@ import { currencyOptions } from '~/presentation/constants/currency-options'
 import { DAY_OPTIONS } from '~/presentation/constants/due-day-options'
 import { useToast } from '~/presentation/components/ui/toast'
 import { useQueryInvalidator } from '~/data/hooks/queries/useQueryInvalidator'
+import { useNavigation } from '@react-navigation/native'
+import { useDebugScreen } from '~/utils/debug-screen'
 
 const formSchema = cardSchema.pick({
   label: true,
@@ -37,6 +38,7 @@ export const CardCreateScreen: FC = () => {
   const { t } = useTranslation()
   const { invalidateFetchCards } = useQueryInvalidator()
   const cardRepository = useCardsRepository()
+  const navigation = useNavigation()
   const {
     control,
     handleSubmit,
@@ -52,7 +54,7 @@ export const CardCreateScreen: FC = () => {
         title: t('CARD_CREATE.TITLE.SUCCESS'),
       })
       await invalidateFetchCards()
-      router.back()
+      navigation.goBack()
     } catch (err) {
       let msg = 'GENERIC_CREATION_ERROR'
       if (err instanceof ZodError) {
@@ -70,6 +72,7 @@ export const CardCreateScreen: FC = () => {
     }
   }
 
+  useDebugScreen('CardCreateScreen')
   return (
     <KeyboardAvoidingView className="flex-1">
       <ScrollView contentContainerClassName="flex-grow px-8 pb-8">
@@ -161,7 +164,7 @@ export const CardCreateScreen: FC = () => {
           theme="neutral"
           label={t('Cancel')}
           disabled={isSubmitting}
-          onPress={() => router.back()}
+          onPress={() => navigation.goBack()}
         />
       </ScrollView>
     </KeyboardAvoidingView>

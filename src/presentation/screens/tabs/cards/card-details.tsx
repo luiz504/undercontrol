@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { FlatList, View } from 'react-native'
-import { Link, router, useLocalSearchParams } from 'expo-router'
+
 import { ChevronLeft, Plus } from 'lucide-react-native'
 import { useTranslation } from 'react-i18next'
 import { format } from 'date-fns'
@@ -18,16 +18,26 @@ import {
 } from '~/presentation/components/ui'
 import { useToast } from '~/presentation/components/ui/toast'
 
-export const CardDetailsScreen: FC = () => {
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { CardsStackParamList } from '~/main/routes/types'
+
+type Props = NativeStackScreenProps<CardsStackParamList, 'Details'>
+export const CardDetailsScreen: FC<Props> = ({
+  navigation,
+  route: {
+    params: { id },
+  },
+}) => {
   const { t } = useTranslation()
-  const { id } = useLocalSearchParams<{ id: string }>()
+
   const toast = useToast()
 
   const { data: card, isLoading: isLoadingCard } = useGetCardByIdQuery({
     cardId: id,
     onSuccess: (card) => {
       if (!card) {
-        router.replace('/(tabs)/cards')
+        navigation.goBack()
+
         toast.show({
           type: 'error',
           title: t('Card_not_found'),
@@ -48,9 +58,13 @@ export const CardDetailsScreen: FC = () => {
     <VStack className="flex-1 px-8">
       <VStack className="gap-3 pb-8 pt-4">
         <HStack className="items-center gap-3">
-          <Link asChild href="/(tabs)/cards">
-            <Button variant="link" theme="neutral" icon={ChevronLeft} />
-          </Link>
+          <Button
+            variant="link"
+            theme="neutral"
+            icon={ChevronLeft}
+            onPress={() => navigation.goBack()}
+          />
+
           <Heading size="sm" className="capitalize">
             Return
           </Heading>
@@ -81,12 +95,13 @@ export const CardDetailsScreen: FC = () => {
           <Heading size="sm" className="flex-1">
             Transactions
           </Heading>
-          <Link
-            asChild
-            href={`/(tabs)/cards/details/${id}/create-card-transaction`}
-          >
-            <Button variant="outline" theme="neutral" icon={Plus} />
-          </Link>
+
+          <Button
+            variant="outline"
+            theme="neutral"
+            icon={Plus}
+            onPress={() => navigation.navigate('CreateCardTransaction', { id })}
+          />
         </HStack>
 
         <FlatList

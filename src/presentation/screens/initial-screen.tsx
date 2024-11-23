@@ -1,14 +1,15 @@
 import { FC } from 'react'
 import { ScrollView } from 'react-native'
 import { useTranslation } from 'react-i18next'
-import { router } from 'expo-router'
 
 import { Heading, Box, LucideIcon, Button } from '~/presentation/components/ui'
+import { useSession } from '../context/session/hook'
 
 export const InitialScreen: FC = () => {
   const { t } = useTranslation()
+  const { initSession } = useSession()
   const handleClientEnter = () => {
-    router.replace('/(tabs)')
+    initSession(new Date())
   }
 
   return (
